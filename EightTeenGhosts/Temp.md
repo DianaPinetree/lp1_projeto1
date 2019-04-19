@@ -3,6 +3,8 @@
 
 ### Composição do programa
 
+### Link para [Diagrama]:https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing
+
 - Enumeração para os estados possíveis de 1 célula.
 
 - Class de posição com propriedades Coluna e Linha para guardar 
@@ -25,3 +27,4 @@
 
 - Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
 	a partir do tabuleiro.
+
