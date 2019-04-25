@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace EightTeenGhosts
 {
@@ -6,7 +7,17 @@ namespace EightTeenGhosts
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Encoding for UTF8 Chars
+            Console.OutputEncoding = Encoding.UTF8;
+            Board gameBoard;
+
+            //Initialize a new game board
+            gameBoard = new Board();
+
+            //Draw the game board
+            Renderer.DrawBoard(gameBoard);
+
+            Console.Read();
         }
     }
 }
