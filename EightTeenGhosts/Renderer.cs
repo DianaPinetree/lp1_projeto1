@@ -112,19 +112,19 @@ namespace EightTeenGhosts
                                     case (0):
                                         {
                                             Console.ForegroundColor = 
-                                                ConsoleColor.Red;
+                                                ConsoleColor.Green;
                                             break;
                                         }
                                     case (2):
                                         {
                                             Console.ForegroundColor =
-                                                ConsoleColor.Yellow;
+                                                ConsoleColor.Green;
                                             break;
                                         }
                                     case (4):
                                         {
                                             Console.ForegroundColor =
-                                                ConsoleColor.Blue;
+                                                ConsoleColor.Green;
                                             break;
                                         }
                                 }
