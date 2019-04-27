@@ -59,7 +59,9 @@ namespace EightTeenGhosts
             boardState[3, 3] = CellState.Mirror;
 
             //Place the portals
-
+            boardState[0, 2] = CellState.Portal;
+            boardState[2, 4] = CellState.Portal;
+            boardState[4, 2] = CellState.Portal;
         }
     }
 }
