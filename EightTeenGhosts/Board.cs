@@ -6,62 +6,94 @@ namespace EightTeenGhosts
 {
     class Board
     {
-        internal CellState[,] boardState;
+        internal Cell[,] boardState;
 
+        // Constructor method of the board class
         public Board()
         {
-            //Initialize board states
-            boardState = new CellState[5, 5];
+            // Initialize board states
+            boardState = new Cell[5, 5];
 
-            //build the initial state of the board
+            // Set Blank colored spaces of the board
+            SetBlanks();
+            SetEmptyColors();
+            // Place the rest of the pieces
+            SetMirrors();
+            SetPortals();
+        }
+
+        private void SetMirrors()
+        {
+            // Place the mirrors
+            boardState[1, 1].Type = CellType.Mirror;
+            boardState[1, 3].Type = CellType.Mirror;
+            boardState[3, 1].Type = CellType.Mirror;
+            boardState[3, 3].Type = CellType.Mirror;
+        }
+
+        private void SetPortals()
+        {
+            // Place the portals
+            boardState[0, 2].Type = CellType.Portal;
+            boardState[0, 2].Color = CellColor.Red;
+            boardState[2, 4].Type = CellType.Portal;
+            boardState[2, 4].Color = CellColor.Yellow;
+            boardState[4, 2].Type = CellType.Portal;
+            boardState[4, 2].Color = CellColor.Blue;
+        }
+
+        private void SetBlanks()
+        {
+            // build the initial state of the board
             for (int i = 0; i < boardState.GetLength(0); i++)
             {
                 for (int j = 0; j < boardState.GetLength(1); j++)
                 {
-                    //Top row, 0
-                    if (i == 0 && (j + 1) % 3 == 1)
-                        boardState[i, j] = CellState.EmptyBlue;
-                    else if (i == 0 && (j + 1) % 3 == 2)
-                        boardState[i, j] = CellState.EmptyRed;
-
-                    //Second row, 1
-                    if (i == 1)
-                        boardState[i, j] = CellState.EmptyYellow;
-
-                    //Third row, 2
-                    if (i == 2 && (j + 1) % 2 == 1)
-                        boardState[i, j] = CellState.EmptyRed;
-                    else if (i == 2 && (j + 1) % 2 == 0)
-                        boardState[i, j] = CellState.EmptyBlue;
-
-                    //Fourth row, 3
-                    if (i == 3 && (j + 1) % 3 == 1)
-                        boardState[i, j] = CellState.EmptyBlue;
-                    else if (i == 3 && (j + 1) % 3 == 2)
-                        boardState[i, j] = CellState.EmptyRed;
-                    else if (i == 3 && (j + 1) % 3 == 0)
-                        boardState[i, j] = CellState.EmptyYellow;
-
-                    //Fifth row, 4
-                    if (i == 4 && (j + 1) % 4 == 1)
-                        boardState[i, j] = CellState.EmptyYellow;
-                    else if (i == 4 && (j + 1) % 4 == 2)
-                        boardState[i, j] = CellState.EmptyRed;
-                    else if (i == 4 && (j + 1) % 4 == 0)
-                        boardState[i, j] = CellState.EmptyBlue;
+                    boardState[i, j] = new Cell(CellType.Empty);
                 }
             }
+        }
 
-            //Place the mirrors
-            boardState[1, 1] = CellState.Mirror;
-            boardState[1, 3] = CellState.Mirror;
-            boardState[3, 1] = CellState.Mirror;
-            boardState[3, 3] = CellState.Mirror;
+        private void SetEmptyColors()
+        {
+            // build the initial state of the board
+            for (int i = 0; i < boardState.GetLength(0); i++)
+            {
+                for (int j = 0; j < boardState.GetLength(1); j++)
+                {
+                    // Top row, 0
+                    if (i == 0 && (j + 1) % 3 == 1)
+                        boardState[i, j].Color = CellColor.Blue;
+                    else if (i == 0 && (j + 1) % 3 == 2)
+                        boardState[i, j].Color = CellColor.Red;
 
-            //Place the portals
-            boardState[0, 2] = CellState.Portal;
-            boardState[2, 4] = CellState.Portal;
-            boardState[4, 2] = CellState.Portal;
+                    // Second row, 1
+                    if (i == 1)
+                        boardState[i, j].Color = CellColor.Yellow;
+
+                    // Third row, 2
+                    if (i == 2 && (j + 1) % 2 == 1)
+                        boardState[i, j].Color = CellColor.Red;
+                    else if (i == 2 && (j + 1) % 2 == 0)
+                        boardState[i, j].Color = CellColor.Blue;
+
+                    // Fourth row, 3
+                    if (i == 3 && (j + 1) % 3 == 1)
+                        boardState[i, j].Color = CellColor.Blue;
+                    else if (i == 3 && (j + 1) % 3 == 2)
+                        boardState[i, j].Color = CellColor.Red;
+                    else if (i == 3 && (j + 1) % 3 == 0)
+                        boardState[i, j].Color = CellColor.Yellow;
+
+                    // Fifth row, 4
+                    if (i == 4 && (j + 1) % 4 == 1)
+                        boardState[i, j].Color = CellColor.Yellow;
+                    else if (i == 4 && (j + 1) % 4 == 2)
+                        boardState[i, j].Color = CellColor.Red;
+                    else if (i == 4 && (j + 1) % 4 == 0)
+                        boardState[i, j].Color = CellColor.Blue;
+                }
+            }
         }
     }
 }

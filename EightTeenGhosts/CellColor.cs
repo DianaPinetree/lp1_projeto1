@@ -5,11 +5,10 @@ using System.Text;
 namespace EightTeenGhosts
 {
     [Flags]
-    enum Rotation
+    enum CellColor
     {
-        Up = 1 << 0,
-        Right = 1 << 1,
-        Down = 1 << 2,
-        Left = 1 << 3
+        Red = 1 << 0,
+        Blue = 1 << 1,
+        Yellow = 1 << 2,
     }
 }
