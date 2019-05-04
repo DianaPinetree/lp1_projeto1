@@ -8,15 +8,22 @@ namespace EightTeenGhosts
     {
         internal Cell[,] boardState;
 
+        // Property for the ghosts that have left the castle, player 1 and 2
+        public CellColor[] ghostsOutside { get; private set; }
+
         // Constructor method of the board class
         public Board()
         {
+            // Property array size of 2, 1 for each player
+            ghostsOutside = new CellColor[2];
+
             // Initialize board states
             boardState = new Cell[5, 5];
 
             // Set Blank colored spaces of the board
             SetBlanks();
             SetEmptyColors();
+
             // Place the rest of the pieces
             SetMirrors();
             SetPortals();
