@@ -4,9 +4,15 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// 
+    /// </summary>
     static class Renderer
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="board"></param>
         static public void DrawBoard(Board board)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -27,9 +33,13 @@ namespace EightTeenGhosts
                     // CellState to save what state the current cell has
                     CellColor color;
                     CellType type;
-                    // Check what state it has and print a proper character
+
+                    // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
+
+                    // Check what is the type of the current cell and print
+                    // the corresponding type
                     switch (type)
                     {
                         case (CellType.Empty):
@@ -44,15 +54,29 @@ namespace EightTeenGhosts
                     }
                     
                 }
+                // Print the bottom of the board
                 Console.WriteLine();
                 Console.WriteLine("|_____|_____|_____|_____|_____|");
             }
 
         }
 
-        private static void PrintPortals(CellColor color, int collumn)
+        /// <summary>
+        /// Writes the row of the Portal character of a cell
+        /// </summary>
+        /// <param name="color">
+        /// color of the current cell of type CellColor
+        /// </param>
+        /// <param name="column">
+        /// Current column that is going to be printed
+        /// </param>
+        private static void PrintPortals(CellColor color, int column)
         {
+            // Writes the first character for the middle row of a cell
             Console.Write($"|  ");
+
+            // Checks the color of the cell and changes foreground for the 
+            // said color
             switch (color)
             {
                 case (CellColor.Red):
@@ -71,14 +95,20 @@ namespace EightTeenGhosts
                         break;
                     }
             }
+
+            // Writes the representative char and closes the cell row
+            // accordingly
             Console.Write($"P");
             Console.ResetColor();
-            if (collumn == 4)
+            if (column == 4)
                 Console.Write($"  |");
             else
                 Console.Write($"  ");
         }
 
+        /// <summary>
+        /// Writes the row of the Mirror character of a cell
+        /// </summary>
         private static void PrintMirrors()
         {
             Console.Write($"|  ");
@@ -88,73 +118,45 @@ namespace EightTeenGhosts
             Console.Write($"  ");
         }
 
-        private static void PrintEmpties(CellColor color, int collumn)
+        /// <summary>
+        /// Writes the row of an Empty character of a cell
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="column"></param>
+        private static void PrintEmpties(CellColor color, int column)
         {
+            // Empty state character
             char emptyState = '*';
 
+            Console.Write($"|  ");
+            // Checks for the right color
             switch (color)
             {
                 case (CellColor.Red):
                     {
-                        if (collumn == 4)
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  |");
-                        }
-                        else
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  ");
-                        }
-                        break;
-                    }
-                case (CellColor.Blue):
-                    {
-                        if (collumn == 4)
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  |");
-                        }
-                        else
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  ");
-                        }
+                        Console.ForegroundColor = ConsoleColor.Red;
                         break;
                     }
                 case (CellColor.Yellow):
                     {
-                        if (collumn == 4)
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  |");
-                        }
-                        else
-                        {
-                            Console.Write($"|  ");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write($"{emptyState}");
-                            Console.ResetColor();
-                            Console.Write($"  ");
-                        }
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    }
+                case (CellColor.Blue):
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         break;
                     }
             }
+
+            // Writes the representative char and closes the cell row
+            // accordingly
+            Console.Write($"{emptyState}");
+            Console.ResetColor();
+            if (column == 4)
+                Console.Write($"  |");
+            else
+                Console.Write($"  ");
         }
     }
 }
