@@ -62,6 +62,8 @@ namespace EightTeenGhosts
                     currentPlayer = player2;
                 }
                 turns++;
+
+
                 Renderer.DrawBoard(gameBoard);
                 Console.WriteLine(currentPlayer.PlayerName);
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
@@ -81,11 +83,33 @@ namespace EightTeenGhosts
                 currentPlayer = player2;
             }
             turns++;
+
             Renderer.DrawBoard(gameBoard);
-            Console.ReadKey();
+            Continue();
             Console.Clear();
-            Renderer.DrawBoardColor(CellColor.Red, gameBoard);
+            PlaceStartingGhosts();
+            Continue();
+        }
+
+        private void Continue()
+        {
+            Console.WriteLine("Press <Enter> to continue");
             Console.ReadKey();
+        }
+
+        private void PlaceStartingGhosts()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                CellColor color;
+
+                color = (CellColor)(1 << i);
+
+                Position ghostPosition;
+                ghostPosition = currentPlayer.GetPosition(gameBoard, color);
+
+                gameBoard.SetPosition(ghostPosition, color);
+            }
         }
     }
 }

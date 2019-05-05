@@ -96,6 +96,7 @@ namespace EightTeenGhosts
                     else
                         PrintBlank(j);
                 }
+
                 // Print the bottom of the board
                 Console.WriteLine();
                 Console.WriteLine("|_____|_____|_____|_____|_____|");
