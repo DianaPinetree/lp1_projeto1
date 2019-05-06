@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// Position class to save an x and y position of the board
+    /// </summary>
     class Position
     {
         // Variables of an x, y position

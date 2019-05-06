@@ -158,6 +158,13 @@ namespace EightTeenGhosts
                 Console.Write($"  ");
         }
 
+        /// <summary>
+        /// Prints a simple blank cell
+        /// </summary>
+        /// <param name="column">
+        /// Checks if it's the last column of the board
+        /// to insert the closing char
+        /// </param>
         private static void PrintBlank(int column)
         {
             Console.Write($"|   ");

@@ -4,13 +4,23 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// Game logic and run methods
+    /// </summary>
     class Game
     {
+        // VARIABLES
+        // Turn Counter
         private int turns;
+
+        // Current playing player
         private Player currentPlayer;
+
+        // Players
         private Player player1;
         private Player player2;
 
+        // Board and win checker instances
         private Board gameBoard;
         private WinChecker winCheck;
 
@@ -21,6 +31,10 @@ namespace EightTeenGhosts
 
         }
 
+        /// <summary>
+        /// Initializes players
+        /// Players are asked to input their names
+        /// </summary>
         private void InitializePlayers()
         {
             string playerName;
@@ -38,6 +52,9 @@ namespace EightTeenGhosts
             player2 = new Player(playerName);
         }
 
+        /// <summary>
+        /// Contains the whole game logic
+        /// </summary>
         public void Run()
         {
             // Encoding for UTF8 Chars
@@ -48,6 +65,9 @@ namespace EightTeenGhosts
             Console.Read();
         }
 
+        /// <summary>
+        /// Main loop of the game
+        /// </summary>
         private void GameLoop()
         {
             Console.Clear();
@@ -75,6 +95,10 @@ namespace EightTeenGhosts
         }
 
         // Called before starting a game
+        /// <summary>
+        /// Called before starting the game, method responsible for placing
+        /// the ghosts and giving the initial messages
+        /// </summary>
         private void StartGame()
         {
             turns = 0;
@@ -97,12 +121,25 @@ namespace EightTeenGhosts
             Continue();
         }
 
+        /// <summary>
+        /// Simple method to add a stop to a loop with elegance
+        /// </summary>
         private void Continue()
         {
             Console.WriteLine("Press <Enter> to continue");
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Function that translates player input to the board and places
+        /// the corresponding color and position of a ghost/s
+        /// </summary>
+        /// <param name="numberOfGhosts">
+        /// Number of how many ghosts you want to place for a said player
+        /// </param>
+        /// <param name="player">
+        /// Player that will place the ghosts
+        /// </param>
         private void PlaceStartingGhosts(int numberOfGhosts, int player = 0)
         {
             CellColor color;

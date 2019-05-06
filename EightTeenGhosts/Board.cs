@@ -6,6 +6,7 @@ namespace EightTeenGhosts
 {
     class Board
     {
+        // Main board state, bi-dimensional array made of Cell's
         internal Cell[,] boardState;
 
         // Property for the ghosts that have left the castle, player 1 and 2
@@ -29,6 +30,9 @@ namespace EightTeenGhosts
             SetPortals();
         }
 
+        /// <summary>
+        /// Builds the mirrors in the board
+        /// </summary>
         private void SetMirrors()
         {
             // Place the mirrors
@@ -38,6 +42,9 @@ namespace EightTeenGhosts
             boardState[3, 3].Type = CellType.Mirror;
         }
 
+        /// <summary>
+        /// Builds the portals in the board
+        /// </summary>
         private void SetPortals()
         {
             // Place the portals
@@ -49,6 +56,9 @@ namespace EightTeenGhosts
             boardState[4, 2].Color = CellColor.Blue;
         }
 
+        /// <summary>
+        /// Initializes the board with empty cells
+        /// </summary>
         private void SetBlanks()
         {
             // build the initial state of the board
@@ -61,6 +71,9 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Sets all the empty cells in the board
+        /// </summary>
         private void SetEmptyColors()
         {
             // build the initial state of the board
@@ -103,6 +116,15 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Sets a position of the board with a ghost cell and a given color
+        /// </summary>
+        /// <param name="position">
+        /// Position of the ghost
+        /// </param>
+        /// <param name="color">
+        /// Color of the ghost
+        /// </param>
         public void SetPosition(Position position, CellColor color)
         {
             boardState[position.x, position.y].Type = CellType.Ghost;
