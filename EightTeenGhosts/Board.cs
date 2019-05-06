@@ -27,6 +27,9 @@ namespace EightTeenGhosts
             // Place the rest of the pieces
             SetMirrors();
             SetPortals();
+            SetGhost();
+            MoveGhost(0, 0, 1, 0);
+            MoveGhost(1, 0, 2, 0);
         }
 
         private void SetMirrors()
@@ -47,6 +50,12 @@ namespace EightTeenGhosts
             boardState[2, 4].Color = CellColor.Yellow;
             boardState[4, 2].Type = CellType.Portal;
             boardState[4, 2].Color = CellColor.Blue;
+        }
+
+        private void SetGhost()
+        {
+            boardState[0, 0].Type = CellType.Ghost;
+            boardState[0, 0].Color = CellColor.Blue;
         }
 
         private void SetBlanks()
@@ -101,6 +110,20 @@ namespace EightTeenGhosts
                         boardState[i, j].Color = CellColor.Blue;
                 }
             }
+        }
+
+        CellColor previousColor1;
+        CellColor previousColor2;
+
+        public void MoveGhost(int xI, int yI, int xF, int yF)
+        {
+            previousColor1 = boardState[xI, yI].Color;
+            previousColor2 = boardState[xF, yF].Color;
+            boardState[xI, yI].Type = CellType.Empty;
+            boardState[xF, yF].Type = CellType.Ghost;
+            boardState[xI, yI].Color = previousColor1;
+            previousColor1 = boardState[xF, yF].Color;
+            boardState[xF, yF].Color = previousColor2;
         }
     }
 }

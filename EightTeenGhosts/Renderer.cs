@@ -51,6 +51,9 @@ namespace EightTeenGhosts
                         case (CellType.Portal):
                             PrintPortals(color, j);
                             break;
+                        case (CellType.Ghost):
+                            PrintGhosts(color, j);
+                            break;
                     }
                     
                 }
@@ -152,6 +155,42 @@ namespace EightTeenGhosts
             // Writes the representative char and closes the cell row
             // accordingly
             Console.Write($"{emptyState}");
+            Console.ResetColor();
+            if (column == 4)
+                Console.Write($"  |");
+            else
+                Console.Write($"  ");
+        }
+
+        private static void PrintGhosts(CellColor color, int column)
+        {
+            // Writes the first character for the middle row of a cell
+            Console.Write($"|  ");
+
+            // Checks the color of the cell and changes foreground for the 
+            // said color
+            switch (color)
+            {
+                case (CellColor.Red):
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
+                    }
+                case (CellColor.Yellow):
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    }
+                case (CellColor.Blue):
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    }
+            }
+
+            // Writes the representative char and closes the cell row
+            // accordingly
+            Console.Write($"G");
             Console.ResetColor();
             if (column == 4)
                 Console.Write($"  |");
