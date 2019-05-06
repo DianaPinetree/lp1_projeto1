@@ -6,9 +6,9 @@
 - Pedro Inácio, a21802050
 - Rodrigo Pinheiro, a21802488
 
-#### [Repositório Git utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
+#### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
 
-### **Realização do Projecto:**
+### **Realização do Projeto:**
 
 - Afonso Rosa:
     
@@ -22,11 +22,7 @@
 
 
 
-### Composição do programa
-
-#### [Diagrama UML](https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing)
-
-#### [Fluxograma](PLACEHOLDER)
+### **Arquitetura do Programa**
 
 - Enumeração para os estados possíveis de 1 célula.
 
@@ -50,3 +46,9 @@
 
 - Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
 	a partir do tabuleiro.
+
+#### [Diagrama UML](PLACEHOLDER)
+
+#### [Fluxograma](https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing)
+
+### **Conclusões**
