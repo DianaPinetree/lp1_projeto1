@@ -2,7 +2,7 @@
 # **1º Projeto de Linguagens de Programação I - 18Ghosts** cheat sheet
 
 **Trabalho realizado por:**
-- Afonso Rosa, a21802169
+- Afonso Rosa, a21802169 
 - Pedro Inácio, a21802050
 - Rodrigo Pinheiro, a21802488
 
