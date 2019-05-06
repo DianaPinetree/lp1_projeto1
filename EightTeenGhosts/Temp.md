@@ -1,9 +1,28 @@
 ﻿## Temporary help, delete once is done
-# Projeto 1 cheat sheet
+# **1º Projeto de Linguagens de Programação I - 18Ghosts** cheat sheet
 
-### Composição do programa
+**Trabalho realizado por:**
+- Afonso Rosa, a21802169 
+- Pedro Inácio, a21802050
+- Rodrigo Pinheiro, a21802488
 
-#### Link para [Diagrama]:https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing
+#### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
+
+### **Realização do Projeto:**
+
+- Afonso Rosa:
+    
+    - PLACEHOLDER
+- Pedro Inácio:
+
+    - PLACEHOLDER
+- Rodrigo Pinheiro:
+
+    - PLACEHOLDER 
+
+
+
+### **Arquitetura do Programa**
 
 - Enumeração para os estados possíveis de 1 célula.
 
@@ -27,3 +46,9 @@
 
 - Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
 	a partir do tabuleiro.
+
+#### [Diagrama UML](PLACEHOLDER)
+
+#### [Fluxograma](https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing)
+
+### **Conclusões**
