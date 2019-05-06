@@ -30,7 +30,8 @@ namespace EightTeenGhosts
                 Console.WriteLine("|     |     |     |     |     |");
                 for (int j = 0; j < cols; j++)
                 {
-                    // CellState to save what state the current cell has
+                    // CellState and CellColor
+                    // to save what state the current cell has
                     CellColor color;
                     CellType type;
 
@@ -43,13 +44,16 @@ namespace EightTeenGhosts
                     switch (type)
                     {
                         case (CellType.Empty):
-                            PrintEmpty(color, j);
+                            PrintCell(color, j);
                             break;
                         case (CellType.Mirror):
                             PrintMirror();
                             break;
                         case (CellType.Portal):
-                            PrintPortal(color, j);
+                            PrintCell(color, j, 'P');
+                            break;
+                        case (CellType.Ghost):
+                            PrintCell(color, j, 'G');
                             break;
                     }
 
@@ -90,7 +94,7 @@ namespace EightTeenGhosts
                         board.boardState[i, j].Type == CellType.Empty)
                     {
                         cellIndexChar = (char)(cellIndex + 48);
-                        PrintEmpty(color, j, cellIndexChar);
+                        PrintCell(color, j, cellIndexChar);
                         cellIndex++;
                     }
                     else
@@ -101,51 +105,6 @@ namespace EightTeenGhosts
                 Console.WriteLine();
                 Console.WriteLine("|_____|_____|_____|_____|_____|");
             }
-        }
-
-        /// <summary>
-        /// Writes the row of the Portal character of a cell
-        /// </summary>
-        /// <param name="color">
-        /// color of the current cell of type CellColor
-        /// </param>
-        /// <param name="column">
-        /// Current column that is going to be printed
-        /// </param>
-        private static void PrintPortal(CellColor color, int column)
-        {
-            // Writes the first character for the middle row of a cell
-            Console.Write($"|  ");
-
-            // Checks the color of the cell and changes foreground for the 
-            // said color
-            switch (color)
-            {
-                case (CellColor.Red):
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        break;
-                    }
-                case (CellColor.Yellow):
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        break;
-                    }
-                case (CellColor.Blue):
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        break;
-                    }
-            }
-
-            // Writes the representative char and closes the cell row
-            // accordingly
-            Console.Write($"P");
-            Console.ResetColor();
-            if (column == 4)
-                Console.Write($"  |");
-            else
-                Console.Write($"  ");
         }
 
         /// <summary>
@@ -165,7 +124,7 @@ namespace EightTeenGhosts
         /// </summary>
         /// <param name="color"></param>
         /// <param name="column"></param>
-        private static void PrintEmpty(CellColor color, int column,
+        private static void PrintCell(CellColor color, int column,
             char emptyState = '*')
         {
             Console.Write($"|  ");

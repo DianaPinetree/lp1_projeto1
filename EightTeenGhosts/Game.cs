@@ -51,6 +51,7 @@ namespace EightTeenGhosts
         private void GameLoop()
         {
             Console.Clear();
+            // Game Loop
             while (!winCheck.IsWin(gameBoard.ghostsOutside))
             {
                 if (turns % 2 == 0)
@@ -66,28 +67,33 @@ namespace EightTeenGhosts
 
                 Renderer.DrawBoard(gameBoard);
                 Console.WriteLine(currentPlayer.PlayerName);
+
+                // Exit key
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                     gameBoard.ghostsOutside[0] = CellColor.Blue | CellColor.Yellow | CellColor.Red;
             }
         }
 
+        // Called before starting a game
         private void StartGame()
         {
             turns = 0;
-            if (turns % 2 == 0)
-            {
-                currentPlayer = player1;
-            }
-            else
-            {
-                currentPlayer = player2;
-            }
-            turns++;
 
             Renderer.DrawBoard(gameBoard);
             Continue();
+
+            // Place the first ghost, first player
+            PlaceStartingGhosts(1);
             Console.Clear();
-            PlaceStartingGhosts();
+
+            // Place the 2nd and 3rd ghosts, second player
+            PlaceStartingGhosts(2, 2);
+
+            for (int i = 0; i < 15; i++)
+            {
+                Console.Clear();
+                PlaceStartingGhosts(1, i % 2);
+            }
             Continue();
         }
 
@@ -97,14 +103,20 @@ namespace EightTeenGhosts
             Console.ReadKey();
         }
 
-        private void PlaceStartingGhosts()
+        private void PlaceStartingGhosts(int numberOfGhosts, int player = 0)
         {
-            for (int i = 0; i < 3; i++)
+            CellColor color;
+
+            if (player == 0)
+                currentPlayer = player1;
+            else
+                currentPlayer = player2;
+
+            Console.WriteLine($"Player {currentPlayer.PlayerName}");
+            for (int i = 0; i < numberOfGhosts; i++)
             {
-                CellColor color;
-
-                color = (CellColor)(1 << i);
-
+                color = Player.PickColor();
+                Renderer.DrawBoardColor(color, gameBoard);
                 Position ghostPosition;
                 ghostPosition = currentPlayer.GetPosition(gameBoard, color);
 

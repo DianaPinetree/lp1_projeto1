@@ -13,6 +13,33 @@ namespace EightTeenGhosts
             PlayerName = playerName;
         }
 
+
+        public static CellColor PickColor()
+        {
+            CellColor color;
+            int playerColor;
+
+            Console.WriteLine("What color of ghost do you want to place? " +
+                "red: 1, blue: 2, yellow: 3");
+            playerColor = Convert.ToInt32(Console.ReadLine());
+
+            if (playerColor == 1)
+            {
+                color = CellColor.Red;
+                return color;
+            }
+            else if (playerColor == 2)
+            {
+                color = CellColor.Blue;
+                return color;
+            }
+            else
+            {
+                color = CellColor.Yellow;
+                return color;
+            }
+        }
+
         // Gets a position with a user input from a number from 1 to 6
         // 6 being the max number of empty cells in any given moment of 1 color
         public Position GetPosition(Board board, CellColor color)
