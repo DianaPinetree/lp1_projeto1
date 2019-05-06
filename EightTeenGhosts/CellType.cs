@@ -4,7 +4,6 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
-    [Flags]
     enum CellType
     {
         Empty,

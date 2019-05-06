@@ -102,5 +102,11 @@ namespace EightTeenGhosts
                 }
             }
         }
+
+        public void SetPosition(Position position, CellColor color)
+        {
+            boardState[position.x, position.y].Type = CellType.Ghost;
+            boardState[position.x, position.y].Color = color;
+        }
     }
 }

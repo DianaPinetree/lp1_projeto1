@@ -5,12 +5,12 @@ using System.Text;
 namespace EightTeenGhosts
 {
     /// <summary>
-    /// 
+    /// Contains the functions to render the board
     /// </summary>
     static class Renderer
     {
         /// <summary>
-        /// 
+        /// Draws the whole state of the board
         /// </summary>
         /// <param name="board"></param>
         static public void DrawBoard(Board board)
@@ -30,7 +30,8 @@ namespace EightTeenGhosts
                 Console.WriteLine("|     |     |     |     |     |");
                 for (int j = 0; j < cols; j++)
                 {
-                    // CellState to save what state the current cell has
+                    // CellState and CellColor
+                    // to save what state the current cell has
                     CellColor color;
                     CellType type;
 
@@ -43,16 +44,19 @@ namespace EightTeenGhosts
                     switch (type)
                     {
                         case (CellType.Empty):
-                            PrintEmpties(color,j);
+                            PrintCell(color, j);
                             break;
                         case (CellType.Mirror):
-                            PrintMirrors();
+                            PrintMirror();
                             break;
                         case (CellType.Portal):
-                            PrintPortals(color, j);
+                            PrintCell(color, j, 'P');
+                            break;
+                        case (CellType.Ghost):
+                            PrintCell(color, j, 'G');
                             break;
                     }
-                    
+
                 }
                 // Print the bottom of the board
                 Console.WriteLine();
@@ -62,54 +66,51 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Writes the row of the Portal character of a cell
+        /// Prints the empty cells of a respective color with an assigned index
         /// </summary>
-        /// <param name="color">
-        /// color of the current cell of type CellColor
+        /// <param name="color"> Color you want to print </param>
+        /// <param name="board"> 
+        /// Board variable for the state of the board
         /// </param>
-        /// <param name="column">
-        /// Current column that is going to be printed
-        /// </param>
-        private static void PrintPortals(CellColor color, int column)
+        public static void DrawBoardColor(CellColor color, Board board)
         {
-            // Writes the first character for the middle row of a cell
-            Console.Write($"|  ");
+            // Get the rows and cols of the board
+            int rows = board.boardState.GetLength(0);
+            int cols = board.boardState.GetLength(1);
 
-            // Checks the color of the cell and changes foreground for the 
-            // said color
-            switch (color)
+            int cellIndex;
+            char cellIndexChar;
+            // Print out the top of the board
+            Console.WriteLine(" _____________________________");
+
+            cellIndex = 1;
+            // For loop to print the inside
+            for (int i = 0; i < rows; i++)
             {
-                case (CellColor.Red):
+                Console.WriteLine("|     |     |     |     |     |");
+                for (int j = 0; j < cols; j++)
+                {
+                    if (board.boardState[i, j].Color == color &&
+                        board.boardState[i, j].Type == CellType.Empty)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        break;
+                        cellIndexChar = (char)(cellIndex + 48);
+                        PrintCell(color, j, cellIndexChar);
+                        cellIndex++;
                     }
-                case (CellColor.Yellow):
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        break;
-                    }
-                case (CellColor.Blue):
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        break;
-                    }
-            }
+                    else
+                        PrintBlank(j);
+                }
 
-            // Writes the representative char and closes the cell row
-            // accordingly
-            Console.Write($"P");
-            Console.ResetColor();
-            if (column == 4)
-                Console.Write($"  |");
-            else
-                Console.Write($"  ");
+                // Print the bottom of the board
+                Console.WriteLine();
+                Console.WriteLine("|_____|_____|_____|_____|_____|");
+            }
         }
 
         /// <summary>
         /// Writes the row of the Mirror character of a cell
         /// </summary>
-        private static void PrintMirrors()
+        private static void PrintMirror()
         {
             Console.Write($"|  ");
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -123,11 +124,9 @@ namespace EightTeenGhosts
         /// </summary>
         /// <param name="color"></param>
         /// <param name="column"></param>
-        private static void PrintEmpties(CellColor color, int column)
+        private static void PrintCell(CellColor color, int column,
+            char emptyState = '*')
         {
-            // Empty state character
-            char emptyState = '*';
-
             Console.Write($"|  ");
             // Checks for the right color
             switch (color)
@@ -153,6 +152,15 @@ namespace EightTeenGhosts
             // accordingly
             Console.Write($"{emptyState}");
             Console.ResetColor();
+            if (column == 4)
+                Console.Write($"  |");
+            else
+                Console.Write($"  ");
+        }
+
+        private static void PrintBlank(int column)
+        {
+            Console.Write($"|   ");
             if (column == 4)
                 Console.Write($"  |");
             else
