@@ -1,9 +1,32 @@
 ﻿## Temporary help, delete once is done
-# Projeto 1 cheat sheet
+# **1º Projeto de Linguagens de Programação I - 18Ghosts** cheat sheet
+
+**Trabalho realizado por:**
+- Afonso Rosa, a21802169
+- Pedro Inácio, a21802050
+- Rodrigo Pinheiro, a21802488
+
+#### [Repositório Git utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
+
+### **Realização do Projecto:**
+
+- Afonso Rosa:
+    
+    - PLACEHOLDER
+- Pedro Inácio:
+
+    - PLACEHOLDER
+- Rodrigo Pinheiro:
+
+    - PLACEHOLDER 
+
+
 
 ### Composição do programa
 
-#### Link para [Diagrama]:https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing
+#### [Diagrama UML](https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing)
+
+#### [Fluxograma](PLACEHOLDER)
 
 - Enumeração para os estados possíveis de 1 célula.
 
