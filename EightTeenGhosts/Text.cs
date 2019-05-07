@@ -4,6 +4,14 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// Text class contains methods to write long texts as introduction,
+    /// winning and loosing texts and to have a small synopsis.
+    /// </summary>
+    /// <remarks>
+    /// Text class can also be called for a color text method that will print
+    /// any string with a given color of ConsoleColor type.
+    /// </remarks>
     class Text
     {
         /// <summary>
@@ -25,7 +33,7 @@ namespace EightTeenGhosts
 
 
         /// <summary>
-        /// Displays the number of ghosts, their distrubution 
+        /// Displays the number of ghosts, their distribution 
         /// and the size of the board in text format
         /// </summary>
         public void BoardComponentsText()
@@ -56,7 +64,7 @@ namespace EightTeenGhosts
                 "guide your ghosts" +
                 " to the portals.\n" +
                 "You win once 3 of your own ghosts " +
-                "have escaped, each ghost must be of a differente color.\n");
+                "have escaped, each ghost must be of a different color.\n");
         }
 
         /// <summary>
@@ -103,7 +111,7 @@ namespace EightTeenGhosts
             // Combat
             Console.WriteLine("You may move into occupied rooms " +
                 "and fight the ghost that is currently there.\n" +
-                "The winner is determined by their colour:\n" +
+                "The winner is determined by their color:\n" +
                 "\tRed beats Blue\n" +
                 "\tBlue beats Yellow\n" +
                 "\tYellow beats Red\n" +
@@ -124,15 +132,15 @@ namespace EightTeenGhosts
                 "A ghost may only enter the portal " +
                 "if the portal is facing his direction. " +
                 "Each time a ghost is defeated, " +
-                "the portal corresponding to his colour " +
+                "the portal corresponding to his color " +
                 "rotates 90 degrees clockwise.\n" +
-                "As soon as the oppurtunity arrises the ghost will leave," +
+                "As soon as the opportunity arises the ghost will leave," +
                 "regardless of whose turn it is. " +
                 "The ghost needs to be standing in the adjacent room " +
                 "to the portal and the portal's opening " +
                 "must be facing the direction of the ghost," +
                 "A ghost may only leave through " +
-                "the portal that matches his colour. " +
+                "the portal that matches his color. " +
                 "When a ghost leaves he can not return to the board and " +
                 "is now free from the endless torment of the coders.");
         }
@@ -154,7 +162,7 @@ namespace EightTeenGhosts
                 "free carpet room/cell " +
                 "(the ones you use to place the ghosts at the start) " +
                 "of the same color of the ghost that you want to set free.\n" +
-                "If such a room is unavaiable " +
+                "If such a room is unavailable " +
                 "the ghost can not exit the dungeon.");
         }
     }

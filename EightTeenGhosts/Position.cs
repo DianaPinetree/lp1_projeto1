@@ -10,7 +10,13 @@ namespace EightTeenGhosts
     class Position
     {
         // Variables of an x, y position
+        /// <value>
+        /// Gets and Sets the value of X coordinate of a position
+        /// </value>
         public int x { set; get; }
+        /// <value>
+        /// Gets and Sets the value of Y coordinate of a position
+        /// </value>
         public int y { set; get; }
 
         /// <summary>

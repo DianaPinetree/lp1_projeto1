@@ -9,10 +9,19 @@ namespace EightTeenGhosts
     /// </summary>
     class Player
     {
+        /// <value>
+        /// Gets and Sets the name of the player of a Player instance.
+        /// </value>
         public string PlayerName { get; set;}
-        internal Cell[] playerGhosts;
+        // Array for the Player's owned ghosts
+        private Cell[] playerGhosts;
 
         // Constructor that receives a player name
+        /// <summary>
+        /// Constructor that initializes the player's ghost array 
+        /// as well as the custom player name
+        /// </summary>
+        /// <param name="playerName"></param>
         public Player(string playerName)
         {
             PlayerName = playerName;

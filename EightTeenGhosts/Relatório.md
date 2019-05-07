@@ -1,5 +1,6 @@
-﻿## Temporary help, delete once is done
-# **1º Projeto de Linguagens de Programação I - 18Ghosts** cheat sheet
+﻿\mainpage
+## Relatório do trabalho
+# **1º Projeto de Linguagens de Programação I - 18Ghosts**
 
 **Trabalho realizado por:**
 - Afonso Rosa, a21802169 

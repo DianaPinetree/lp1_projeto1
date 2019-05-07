@@ -15,6 +15,11 @@ namespace EightTeenGhosts
         internal Cell[,] boardState;
 
         // Property for the ghosts that have left the castle, player 1 and 2
+        /// <value> 
+        /// Property array with 2 positions for the ghosts that are outside
+        /// the git repository, ghosts that count for the win state.<br>
+        /// Can only be changed from inside the Board class.
+        /// </value>
         public CellColor[] ghostsOutside { get; private set; }
 
         // Constructor method of the board class
@@ -130,6 +135,9 @@ namespace EightTeenGhosts
         /// <param name="color">
         /// Color of the ghost
         /// </param>
+        /// <param name="type">
+        /// CellType is being replaced in the board position
+        /// </param>
         public void SetPosition(Position position, 
             CellColor color, CellType type)
         {
@@ -138,7 +146,13 @@ namespace EightTeenGhosts
         }
 
         
-
+        /// <summary>
+        /// Moves a ghost to a position given by the player.<br> 
+        /// The input is given through the arrow keys.
+        /// </summary>
+        /// <param name="ghostPos"> 
+        /// Initial Position of the ghost you want to move
+        /// </param>
         public void MoveGhost(Position ghostPos)
         {
             CellColor ghostColour;
@@ -149,7 +163,8 @@ namespace EightTeenGhosts
                 case (ConsoleKey.DownArrow):
                     ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
                     boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x + 1, ghostPos.y].Type = CellType.Ghost;
+                    boardState[ghostPos.x + 1, ghostPos.y]
+                        .Type = CellType.Ghost;
                     SetEmptyColors();
                     boardState[ghostPos.x + 1, ghostPos.y].Color = ghostColour;
                     ghostPos.x = ghostPos.x + 1;
@@ -157,7 +172,8 @@ namespace EightTeenGhosts
                 case (ConsoleKey.UpArrow):
                     ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
                     boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x - 1, ghostPos.y].Type = CellType.Ghost;
+                    boardState[ghostPos.x - 1, ghostPos.y]
+                        .Type = CellType.Ghost;
                     SetEmptyColors();
                     boardState[ghostPos.x - 1, ghostPos.y].Color = ghostColour;
                     ghostPos.x = ghostPos.x - 1;
@@ -165,15 +181,18 @@ namespace EightTeenGhosts
                 case (ConsoleKey.LeftArrow):
                     ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
                     boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y - 1].Type = CellType.Ghost;
+                    boardState[ghostPos.x, ghostPos.y - 1]
+                        .Type = CellType.Ghost;
                     SetEmptyColors();
-                    boardState[ghostPos.x, ghostPos.y - 1].Color = ghostColour;
+                    boardState[ghostPos.x, ghostPos.y - 1]
+                        .Color = ghostColour;
                     ghostPos.y = ghostPos.y - 1;
                     break;
                 case (ConsoleKey.RightArrow):
                     ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
                     boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y + 1].Type = CellType.Ghost;
+                    boardState[ghostPos.x, ghostPos.y + 1]
+                        .Type = CellType.Ghost;
                     SetEmptyColors();
                     boardState[ghostPos.x, ghostPos.y + 1].Color = ghostColour;
                     ghostPos.y = ghostPos.y + 1;
