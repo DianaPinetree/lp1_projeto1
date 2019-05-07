@@ -130,5 +130,17 @@ namespace EightTeenGhosts
             boardState[position.x, position.y].Type = CellType.Ghost;
             boardState[position.x, position.y].Color = color;
         }
+
+        private CellColor ghostColour;
+
+        public void MoveGhostDown(Position ghostPosition)
+        {
+            ghostColour = boardState[ghostPosition.x, ghostPosition.y].Color;
+            boardState[ghostPosition.x, ghostPosition.y].Type = CellType.Empty;
+            boardState[ghostPosition.x + 1, ghostPosition.y].Type = CellType.Ghost;
+            SetEmptyColors();
+            boardState[ghostPosition.x + 1, ghostPosition.y + 1].Color = ghostColour;
+            
+        }
     }
 }
