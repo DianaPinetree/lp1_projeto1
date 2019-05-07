@@ -12,9 +12,14 @@ namespace EightTeenGhosts
         /// <value>
         /// Gets and Sets the name of the player of a Player instance.
         /// </value>
-        public string PlayerName { get; set;}
+        public string PlayerName { get; set; }
+
         // Array for the Player's owned ghosts
-        private Cell[] playerGhosts;
+        /// <value>
+        /// Cell array property for the player's owned ghosts with a get and a
+        /// private set
+        /// </value>
+        public Cell[] PlayerGhosts { get; private set; }
 
         // Constructor that receives a player name
         /// <summary>
@@ -25,7 +30,7 @@ namespace EightTeenGhosts
         public Player(string playerName)
         {
             PlayerName = playerName;
-            playerGhosts = new Cell[9];
+            PlayerGhosts = new Cell[9];
         }
 
         /// <summary>
@@ -42,11 +47,11 @@ namespace EightTeenGhosts
             // Type that will be added to the array of ghosts
             CellType type = CellType.Ghost;
 
-            for (int i = 0; i < playerGhosts.Length; i++)
+            for (int i = 0; i < PlayerGhosts.Length; i++)
             {
-                if (playerGhosts[i] == null)
+                if (PlayerGhosts[i] == null)
                 {
-                    playerGhosts[i] = new Cell(type, color, position);
+                    PlayerGhosts[i] = new Cell(type, color, position);
                     break;
                 }
             }

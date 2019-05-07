@@ -13,14 +13,12 @@ namespace EightTeenGhosts
         /// Draws the whole state of the board
         /// </summary>
         /// <param name="board"></param>
-        static public void DrawBoard(Board board)
+        static public void DrawBoard(Board board, Player player)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
             int cols = board.boardState.GetLength(1);
-
+            char playerChar;
             // Print out the top of the board
             Console.WriteLine(" _____________________________");
 
@@ -38,7 +36,7 @@ namespace EightTeenGhosts
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
-
+                    playerChar = ' ';
                     // Check what is the type of the current cell and print
                     // the corresponding type
                     switch (type)
@@ -53,8 +51,22 @@ namespace EightTeenGhosts
                             PrintCell(color, j, 'P');
                             break;
                         case (CellType.Ghost):
-                            PrintCell(color, j, 'G');
-                            break;
+                            {                         
+                                foreach (Cell cell in player.PlayerGhosts)
+                                {
+
+                                    if (cell.Position.x == i 
+                                        && cell.Position.y == j)
+                                    {
+                                        playerChar = 'A';
+                                        break;
+                                    }
+                                    else
+                                        playerChar = 'B';
+                                }
+                                PrintCell(color, j, playerChar);
+                                break;
+                            }
                     }
 
                 }

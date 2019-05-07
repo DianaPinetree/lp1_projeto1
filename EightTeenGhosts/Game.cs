@@ -39,13 +39,13 @@ namespace EightTeenGhosts
         {
             string playerName;
 
-            Console.WriteLine("Player 1>>>");
+            Console.WriteLine("Player 1>>> A");
             Console.Write("\tWhat's your player name?: ");
             playerName = Console.ReadLine();
 
             player1 = new Player(playerName);
 
-            Console.WriteLine("Player 2>>>");
+            Console.WriteLine("Player 2>>> B");
             Console.Write("\tWhat's your player name?: ");
             playerName = Console.ReadLine();
 
@@ -74,19 +74,22 @@ namespace EightTeenGhosts
             // Game Loop
             while (!winCheck.IsWin(gameBoard.ghostsOutside))
             {
+                char turnChar;
                 if (turns % 2 == 0)
                 {
                     currentPlayer = player1;
+                    turnChar = 'A';
                 }
                 else
                 {
                     currentPlayer = player2;
+                    turnChar = 'B';
                 }
                 turns++;
 
 
-                Renderer.DrawBoard(gameBoard);
-                Console.WriteLine(currentPlayer.PlayerName);
+                Renderer.DrawBoard(gameBoard, player1);
+                Console.WriteLine(currentPlayer.PlayerName + ": " + turnChar);
 
                 // Exit key
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
@@ -103,7 +106,7 @@ namespace EightTeenGhosts
         {
             turns = 0;
 
-            Renderer.DrawBoard(gameBoard);
+            Renderer.DrawBoard(gameBoard, player1);
             Continue();
 
             // Place the first ghost, first player
