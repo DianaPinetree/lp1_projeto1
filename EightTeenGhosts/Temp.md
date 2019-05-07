@@ -47,8 +47,10 @@
 - Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
 	a partir do tabuleiro.
 
-#### [Diagrama UML](PLACEHOLDER)
+#### [Diagrama UML](imageLink)
+![DiagramaUML](diagramaUml.png)
 
-#### [Fluxograma](https://drive.google.com/file/d/1dL46pckbe5K2Tr9PMW4zzPoOEJy25Hhi/view?usp=sharing)
+#### [Fluxograma](imageLink)
+![Fluxograma](fluxograma.png)
 
 ### **Conclusões**
