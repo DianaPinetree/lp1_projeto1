@@ -10,7 +10,7 @@ namespace EightTeenGhosts
     class Player
     {
         public string PlayerName { get; set;}
-        private Cell[] playerGhosts;
+        internal Cell[] playerGhosts;
 
         // Constructor that receives a player name
         public Player(string playerName)
@@ -26,7 +26,7 @@ namespace EightTeenGhosts
 
             for (int i = 0; i < playerGhosts.Length; i++)
             {
-                if (playerGhosts[i] != null)
+                if (playerGhosts[i] == null)
                 {
                     playerGhosts[i] = new Cell(type, color, position);
                     break;

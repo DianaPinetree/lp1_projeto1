@@ -131,15 +131,17 @@ namespace EightTeenGhosts
             boardState[position.x, position.y].Color = color;
         }
 
-        private CellColor ghostColour;
+        
 
-        public void MoveGhostDown(Position ghostPosition)
+        public void MoveGhost(Position ghostPos)
         {
-            ghostColour = boardState[ghostPosition.x, ghostPosition.y].Color;
-            boardState[ghostPosition.x, ghostPosition.y].Type = CellType.Empty;
-            boardState[ghostPosition.x + 1, ghostPosition.y].Type = CellType.Ghost;
+            CellColor ghostColour;
+
+            ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
+            boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
+            boardState[ghostPos.x + 1, ghostPos.y].Type = CellType.Ghost;
             SetEmptyColors();
-            boardState[ghostPosition.x + 1, ghostPosition.y + 1].Color = ghostColour;
+            boardState[ghostPos.x + 1, ghostPos.y + 1].Color = ghostColour;
             
         }
     }
