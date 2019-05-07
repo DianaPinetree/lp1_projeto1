@@ -26,11 +26,7 @@ namespace EightTeenGhosts
 
             for (int i = 0; i < playerGhosts.Length; i++)
             {
-                if (playerGhosts[i] == null)
-                {
-
-                }
-                else
+                if (playerGhosts[i] != null)
                 {
                     playerGhosts[i] = new Cell(type, color, position);
                     break;
