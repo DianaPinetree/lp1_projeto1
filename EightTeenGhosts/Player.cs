@@ -19,6 +19,15 @@ namespace EightTeenGhosts
             playerGhosts = new Cell[9];
         }
 
+        /// <summary>
+        /// Inserts a new ghost to the player's ghost array
+        /// </summary>
+        /// <param name="position"> 
+        /// Position in the gameBoard of the ghost
+        /// </param>
+        /// <param name="color">
+        /// Color of the ghost
+        /// </param>
         public void AppendGhost(Position position, CellColor color)
         {
             // Type that will be added to the array of ghosts
@@ -69,7 +78,7 @@ namespace EightTeenGhosts
 
         /// <summary>
         /// Gets a a position with a user input from a number from 1 to 6
-        /// 6 being the max number of empty cells in 
+        /// <br>6 being the max number of empty cells in 
         /// any given moment of 1 color
         /// </summary>
         /// <param name="board">

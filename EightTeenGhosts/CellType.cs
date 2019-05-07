@@ -4,6 +4,10 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// CellType enumeration.
+    /// Contains the 4 types of states a Cell can have
+    /// </summary>
     enum CellType
     {
         Empty,

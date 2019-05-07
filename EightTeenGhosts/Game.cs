@@ -142,23 +142,38 @@ namespace EightTeenGhosts
         /// </param>
         private void PlaceStartingGhosts(int numberOfGhosts, int player = 0)
         {
+            Position ghostPosition;
+            // Color of the ghost, saves the input color from the player
             CellColor color;
 
+            // Checks the player from the parameter passed to the method
             if (player == 0)
                 currentPlayer = player1;
             else
                 currentPlayer = player2;
 
+            // Writes on top of the screen which player's turn it is
             Console.WriteLine($"Player {currentPlayer.PlayerName}");
+
+            // Loops with a max number of ghosts to put 
             for (int i = 0; i < numberOfGhosts; i++)
             {
+
+                // Asks for a color
                 color = Player.PickColor();
+
+                // Renders the available respective color cells 
                 Renderer.DrawBoardColor(color, gameBoard);
-                Position ghostPosition;
+
+                // Translates a player input to a board position, saves it in
+                // ghostPosition variable
                 ghostPosition = currentPlayer.GetPosition(gameBoard, color);
+
+                // Add the created ghost to the respective player's ghost list
                 currentPlayer.AppendGhost(ghostPosition, color);
 
-                gameBoard.SetPosition(ghostPosition, color);
+                // Sets the created ghost into the board position in gameBoard
+                gameBoard.SetPosition(ghostPosition, color, CellType.Ghost);
             }
         }
     }

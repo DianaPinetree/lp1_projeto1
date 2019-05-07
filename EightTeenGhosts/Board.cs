@@ -4,6 +4,11 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// Gameboard class.
+    /// Has the base structure of a Cell bi-dimensional array
+    /// Contains all methods that change the board directly
+    /// </summary>
     class Board
     {
         // Main board state, bi-dimensional array made of Cell's
@@ -125,9 +130,10 @@ namespace EightTeenGhosts
         /// <param name="color">
         /// Color of the ghost
         /// </param>
-        public void SetPosition(Position position, CellColor color)
+        public void SetPosition(Position position, 
+            CellColor color, CellType type)
         {
-            boardState[position.x, position.y].Type = CellType.Ghost;
+            boardState[position.x, position.y].Type = type;
             boardState[position.x, position.y].Color = color;
         }
     }

@@ -4,6 +4,10 @@ using System.Text;
 
 namespace EightTeenGhosts
 {
+    /// <summary>
+    /// CellColor enumeration.
+    /// Contains the 3 different colors a Cell can have
+    /// </summary>
     [Flags]
     enum CellColor
     {
