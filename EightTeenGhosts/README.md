@@ -9,7 +9,7 @@
 
 #### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
 
-### **Realização do Projeto:**
+### Realização do Projeto:
 
 - Afonso Rosa:
     
@@ -23,7 +23,7 @@
 
 
 
-### **Arquitetura do Programa**
+### Arquitetura do Programa:
 
 - Enumeração para os estados possíveis de 1 célula.
 
@@ -54,4 +54,4 @@
 #### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
 ![Fluxograma](fluxograma.png)
 
-### **Conclusões**
+### Conclusões:
