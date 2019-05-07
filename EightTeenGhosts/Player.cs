@@ -10,11 +10,28 @@ namespace EightTeenGhosts
     class Player
     {
         public string PlayerName { get; set;}
+        private Cell[] playerGhosts;
 
         // Constructor that receives a player name
         public Player(string playerName)
         {
             PlayerName = playerName;
+            playerGhosts = new Cell[9];
+        }
+
+        public void AppendGhost(Position position, CellColor color)
+        {
+            // Type that will be added to the array of ghosts
+            CellType type = CellType.Ghost;
+
+            for (int i = 0; i < playerGhosts.Length; i++)
+            {
+                if (playerGhosts[i] != null)
+                {
+                    playerGhosts[i] = new Cell(type, color, position);
+                    break;
+                }
+            }
         }
 
         /// <summary>

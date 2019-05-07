@@ -156,6 +156,7 @@ namespace EightTeenGhosts
                 Renderer.DrawBoardColor(color, gameBoard);
                 Position ghostPosition;
                 ghostPosition = currentPlayer.GetPosition(gameBoard, color);
+                currentPlayer.AppendGhost(ghostPosition, color);
 
                 gameBoard.SetPosition(ghostPosition, color);
             }

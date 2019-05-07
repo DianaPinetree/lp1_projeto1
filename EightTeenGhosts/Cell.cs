@@ -10,9 +10,18 @@ namespace EightTeenGhosts
 
         public CellColor Color { get; set; }
 
+        public Position Position { get; set; }
+        
         public Cell(CellType type)
         {
             Type = type;
+        }
+
+        public Cell(CellType type, CellColor color, Position position)
+        {
+            Type = type;
+            Color = color;
+            Position = position;
         }
     }
 }
