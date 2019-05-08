@@ -3,9 +3,9 @@
 # **1º Projeto de Linguagens de Programação I - 18Ghosts**
 
 **Trabalho realizado por:**
-- Afonso Rosa, a21802169 
-- Pedro Inácio, a21802050
-- Rodrigo Pinheiro, a21802488
+- [Afonso Rosa, a21802169](https://github.com/AfonsoGR)
+- [Pedro Inácio, a21802050](https://github.com/PmaiWoW)
+- [Rodrigo Pinheiro, a21802488](https://github.com/RodrigoPrinheiro)
 
 #### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
 
@@ -48,10 +48,13 @@
 - Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
 	a partir do tabuleiro.
 
-#### [Diagrama UML](imageLink)
+#### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
 ![DiagramaUML](diagramaUml.png)
 
 #### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
 ![Fluxograma](fluxograma.png)
 
 ### Conclusões:
+
+
+### Referências:
