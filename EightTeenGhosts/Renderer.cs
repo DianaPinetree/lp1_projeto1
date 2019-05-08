@@ -13,12 +13,12 @@ namespace EightTeenGhosts
         /// Draws the whole state of the board
         /// </summary>
         /// <param name="board"></param>
-        static public void DrawBoard(Board board, Player player)
+        static public void DrawBoard(Board board,
+            Cell[] p1Ghosts, Cell[] p2Ghosts)
         {
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
             int cols = board.boardState.GetLength(1);
-            char playerChar;
             // Print out the top of the board
             Console.WriteLine(" _____________________________");
 
@@ -36,7 +36,6 @@ namespace EightTeenGhosts
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
-                    playerChar = ' ';
                     // Check what is the type of the current cell and print
                     // the corresponding type
                     switch (type)
@@ -50,31 +49,30 @@ namespace EightTeenGhosts
                         case (CellType.Portal):
                             PrintCell(color, j, 'P');
                             break;
-                        case (CellType.Ghost):
-                            {                         
-                                foreach (Cell cell in player.PlayerGhosts)
-                                {
-
-                                    if (cell.Position.x == i 
-                                        && cell.Position.y == j)
-                                    {
-                                        playerChar = 'A';
-                                        break;
-                                    }
-                                    else
-                                        playerChar = 'B';
-                                }
-                                PrintCell(color, j, playerChar);
-                                break;
-                            }
                     }
 
+                    for (int k = 0; k < 9; k++)
+                    {
+                        if (p1Ghosts[k].Position.x == i
+                            && p1Ghosts[k].Position.y == j)
+                        {
+                            color = p1Ghosts[k].Color;
+                            PrintCell(color, j, 'A');
+                            break;
+                        }
+                        else if (p2Ghosts[k].Position.x == i
+                            && p2Ghosts[k].Position.y == j)
+                        {
+                            color = p2Ghosts[k].Color;
+                            PrintCell(color, j, 'B');
+                            break;
+                        }
+                    }
                 }
                 // Print the bottom of the board
                 Console.WriteLine();
                 Console.WriteLine("|_____|_____|_____|_____|_____|");
             }
-
         }
 
         /// <summary>
@@ -84,7 +82,7 @@ namespace EightTeenGhosts
         /// <param name="board"> 
         /// Board variable for the state of the board
         /// </param>
-        public static void EnumerateBoardColor(CellColor color, Board board)
+        public static void EnumerateBoardColor(CellColor color, Board board, CellType type)
         {
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
@@ -103,14 +101,16 @@ namespace EightTeenGhosts
                 for (int j = 0; j < cols; j++)
                 {
                     if (board.boardState[i, j].Color == color &&
-                        board.boardState[i, j].Type == CellType.Empty)
+                            board.boardState[i, j].Type == type)
                     {
                         cellIndexChar = (char)(cellIndex + 48);
                         PrintCell(color, j, cellIndexChar);
                         cellIndex++;
                     }
                     else
+                    {
                         PrintBlank(j);
+                    }
                 }
 
                 // Print the bottom of the board
@@ -163,8 +163,6 @@ namespace EightTeenGhosts
                     }
                     else
                         PrintBlank(j);
-
-
                 }
 
                 // Print the bottom of the board

@@ -105,7 +105,8 @@ namespace EightTeenGhosts
 
                 // Render board without any changes & Player's name
                 Console.WriteLine(currentPlayer.PlayerName + ": " + turnChar);
-                Renderer.DrawBoard(gameBoard, player1);
+                Renderer.DrawBoard(gameBoard, 
+                    player1.PlayerGhosts, player2.PlayerGhosts);
 
                 // Pick the current player action
                 gameText.ActionsText();
@@ -139,8 +140,7 @@ namespace EightTeenGhosts
         private void StartGame()
         {
             turns = 0;
-
-            Renderer.DrawBoard(gameBoard, player1);
+            gameText.StartupText();
             Continue();
 
             // Place the first ghost, first player
@@ -155,6 +155,7 @@ namespace EightTeenGhosts
                 Console.Clear();
                 PlaceStartingGhosts(1, i % 2);
             }
+            gameBoard.RestartBoard();
             Continue();
         }
 
@@ -200,7 +201,7 @@ namespace EightTeenGhosts
                 color = currentPlayer.PickColor();
 
                 // Renders the available respective color cells 
-                Renderer.EnumerateBoardColor(color, gameBoard);
+                Renderer.EnumerateBoardColor(color, gameBoard, CellType.Empty);
 
                 // Translates a player input to a board position, saves it in
                 // ghostPosition variable

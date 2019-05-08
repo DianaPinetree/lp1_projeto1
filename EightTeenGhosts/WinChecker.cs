@@ -60,7 +60,7 @@ namespace EightTeenGhosts
             {null, false, true },
             {true, null, false },
             {false, true, null}
-        };
+            };
 
             if (winMatrix[player1Selection, player2Selection] == null)
                 return null;
