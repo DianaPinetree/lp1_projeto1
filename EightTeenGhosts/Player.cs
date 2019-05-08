@@ -58,10 +58,10 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Static class to get a color from player input
+        /// Class to get a color from player input
         /// </summary>
         /// <returns> Returns a Color of type CellColor</returns>
-        public static CellColor PickColor()
+        public CellColor PickColor()
         {
             // Color and player input
             CellColor color;
@@ -90,6 +90,52 @@ namespace EightTeenGhosts
             }
         }
 
+        public int PickAction()
+        {
+            int action;
+
+            action = Convert.ToInt32(Console.ReadLine());
+            return action;
+        }
+
+        public Position GetPosition(Board board)
+        {
+            // Return position, player input number and cell number vars
+            Position ghostPosition;
+            int inputIndex;
+            int cellIndex;
+
+            // Get a number between 1 and 9 from the player
+            inputIndex = Convert.ToInt32(Console.ReadLine());
+
+            // Force it to be between 1 and 9
+            inputIndex = Math.Clamp(inputIndex, 1, 9);
+            cellIndex = 1;
+
+            // get the corresponding position
+            for (int i = 0; i < board.boardState.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.boardState.GetLength(1); j++)
+                {
+                    foreach (Cell cell in PlayerGhosts)
+                    {
+                        if (i == cell.Position.x && j == cell.Position.y)
+                        {
+                            if (inputIndex == cellIndex)
+                            {
+                                // Create a new position with the x,y coordinates
+
+                                ghostPosition = new Position(i, j);
+                                return ghostPosition;
+                            }
+                        }
+                    }
+                    cellIndex++;
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// Gets a a position with a user input from a number from 1 to 6
         /// <br>6 being the max number of empty cells in 
@@ -113,7 +159,7 @@ namespace EightTeenGhosts
 
             // Get a number between 1 and 6 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
-            
+
             // Force it to be between 1 and 6
             inputIndex = Math.Clamp(inputIndex, 1, 6);
             cellIndex = 1;
@@ -132,7 +178,7 @@ namespace EightTeenGhosts
                         if (inputIndex == cellIndex)
                         {
                             // Create a new position with the x,y coordinates
-                            ghostPosition = new Position(i,j);
+                            ghostPosition = new Position(i, j);
                             return ghostPosition;
                         }
                         cellIndex++;
