@@ -114,6 +114,7 @@ namespace EightTeenGhosts
                 {
                     // Move a ghost
                     Renderer.EnumeratePlayerGhosts(currentPlayer, gameBoard);
+                    gameBoard.MoveGhost(currentPlayer.GetPosition(gameBoard));
                 }
                 else
                 {
