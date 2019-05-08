@@ -150,55 +150,55 @@ namespace EightTeenGhosts
         /// Moves a ghost to a position given by the player.<br> 
         /// The input is given through the arrow keys.
         /// </summary>
-        /// <param name="ghostPos"> 
+        /// <param name="gPos"> 
         /// Initial Position of the ghost you want to move
         /// </param>
-        public void MoveGhost(Position ghostPos)
+        public void MoveGhost(Position gPos)
         {
-            CellColor ghostColour;
+            CellColor ghostColor = boardState[gPos.x, gPos.y].Color;
+
             Console.WriteLine("What direction will you move to?\n" +
-                "Select your direct with the arrow keys.");
+                "Select your direction with the arrow keys.");
             switch (Console.ReadKey().Key)
             {
                 case (ConsoleKey.DownArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x + 1, ghostPos.y]
-                        .Type = CellType.Ghost;
+                    CellSetup(gPos, ghostColor);
+                    boardState[gPos.x + 1, gPos.y].Type = CellType.Ghost;
                     SetEmptyColors();
-                    boardState[ghostPos.x + 1, ghostPos.y].Color = ghostColour;
-                    ghostPos.x = ghostPos.x + 1;
+                    boardState[gPos.x + 1, gPos.y].Color = ghostColor;
+                    gPos.x = gPos.x + 1;
                     break;
                 case (ConsoleKey.UpArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x - 1, ghostPos.y]
-                        .Type = CellType.Ghost;
+                    CellSetup(gPos, ghostColor);
+                    boardState[gPos.x - 1, gPos.y].Type = CellType.Ghost;
                     SetEmptyColors();
-                    boardState[ghostPos.x - 1, ghostPos.y].Color = ghostColour;
-                    ghostPos.x = ghostPos.x - 1;
+                    boardState[gPos.x - 1, gPos.y].Color = ghostColor;
+                    gPos.x = gPos.x - 1;
                     break;
                 case (ConsoleKey.LeftArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y - 1]
-                        .Type = CellType.Ghost;
+                    CellSetup(gPos, ghostColor);
+                    boardState[gPos.x, gPos.y - 1].Type = CellType.Ghost;
                     SetEmptyColors();
-                    boardState[ghostPos.x, ghostPos.y - 1]
-                        .Color = ghostColour;
-                    ghostPos.y = ghostPos.y - 1;
+                    boardState[gPos.x, gPos.y - 1]
+                        .Color = ghostColor;
+                    gPos.y = gPos.y - 1;
                     break;
                 case (ConsoleKey.RightArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y + 1]
-                        .Type = CellType.Ghost;
+                    CellSetup(gPos, ghostColor);
+                    boardState[gPos.x, gPos.y + 1].Type = CellType.Ghost;
                     SetEmptyColors();
-                    boardState[ghostPos.x, ghostPos.y + 1].Color = ghostColour;
-                    ghostPos.y = ghostPos.y + 1;
+                    boardState[gPos.x, gPos.y + 1].Color = ghostColor;
+                    gPos.y = gPos.y + 1;
                     break;
             }
             
+        }
+        private CellColor CellSetup(Position setupPos, CellColor ghostColor)
+        {
+            boardState[setupPos.x, setupPos.y].Type = CellType.Empty;
+            SetPortals();
+            SetMirrors();
+            return ghostColor;
         }
     }
 }
