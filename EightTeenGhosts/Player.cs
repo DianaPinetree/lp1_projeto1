@@ -9,6 +9,11 @@ namespace EightTeenGhosts
     /// </summary>
     class Player
     {
+        // The number of ghosts a player has of a certain color
+        int rNum = 0;
+        int bNum = 0;
+        int yNum = 0;
+
         /// <value>
         /// Gets and Sets the name of the player of a Player instance.
         /// </value>
@@ -67,10 +72,7 @@ namespace EightTeenGhosts
             CellColor color;
             int playerColor;
 
-            // The number of ghosts a player has of a certain color
-            int rNum = 0;
-            int bNum = 0;
-            int yNum = 0;
+            
 
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
@@ -81,28 +83,25 @@ namespace EightTeenGhosts
             //ColorCheck();
 
             // Compare and return the corresponding color
-            if (playerColor == 1)
+            if (playerColor == 1 && rNum < 3)
             {
                 color = CellColor.Red;
-                // Why you no increment 
                 rNum++;
                 // Debug of above
                 Console.WriteLine(rNum);
                 return color;
             }
-            else if (playerColor == 2)
+            else if (playerColor == 2 && bNum < 3)
             {
                 color = CellColor.Blue;
-                // Why you no increment 
                 bNum++;
                 // Debug of above
                 Console.WriteLine(bNum);
                 return color;
             }
-            else if (playerColor == 3)
+            else if (playerColor == 3 && yNum < 3)
             {
                 color = CellColor.Yellow;
-                // Why you no increment 
                 yNum++;
                 // Debug of above
                 Console.WriteLine(yNum);
@@ -110,7 +109,8 @@ namespace EightTeenGhosts
             }
             else
             {
-                Console.WriteLine("Pick a valid colour.");
+                Console.WriteLine("Pick a valid colour or " +
+                    "one that still has ghosts for you to place.");
                 return PickColor();
             }
         }
