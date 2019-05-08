@@ -21,6 +21,8 @@ namespace EightTeenGhosts
         /// </value>
         public Cell[] PlayerGhosts { get; private set; }
 
+        public Cell[] Dungeon { get; private set; }
+
         // Constructor that receives a player name
         /// <summary>
         /// Constructor that initializes the player's ghost array 
