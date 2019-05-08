@@ -167,13 +167,13 @@ namespace EightTeenGhosts
         /// Moves a ghost to a position given by the player.<br> 
         /// The input is given through the arrow keys.
         /// </summary>
-        /// <param name="ghostPos"> 
+        /// <param name="gPos"> 
         /// Initial Position of the ghost you want to move
         /// </param>
-        public void MoveGhost(Position ghostPos)
+        public void MoveGhost(Position gPos)
         {
-            CellColor ghostColor;
-            ConsoleKey key;
+            CellColor ghostColor = boardState[gPos.x, gPos.y].Color;
+
             Console.WriteLine("What direction will you move to?\n" +
                 "Select your direction with the arrow keys.");
             key = Console.ReadKey().Key;
@@ -182,22 +182,18 @@ namespace EightTeenGhosts
             boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
             switch (key)
             {
-                case ConsoleKey.DownArrow:
-                    if (ghostPos.y < boardHeight - 1) ghostPos.y++;
-                    break;
-                case ConsoleKey.UpArrow:
-                    if (ghostPos.y > 0) ghostPos.y--;
-                    break;
-                case ConsoleKey.LeftArrow:
-                    if (ghostPos.x > 0) ghostPos.x--;
-                    break;
-                case ConsoleKey.RightArrow:
-                    if (ghostPos.x < boardWidth - 1) ghostPos.x++;
                     break;
             }
             SetEmptyColors();
             boardState[ghostPos.x, ghostPos.y].Type = CellType.Ghost;
             boardState[ghostPos.x, ghostPos.y].Color = ghostColor;
+        }
+        private CellColor CellSetup(Position setupPos, CellColor ghostColor)
+        {
+            boardState[setupPos.x, setupPos.y].Type = CellType.Empty;
+            SetPortals();
+            SetMirrors();
+            return ghostColor;
         }
     }
 }
