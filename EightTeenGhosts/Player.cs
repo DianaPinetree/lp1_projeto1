@@ -23,6 +23,14 @@ namespace EightTeenGhosts
 
         public Cell[] Dungeon { get; private set; }
 
+        // Property for the ghosts that have left the castle, player 1 and 2
+        /// <value> 
+        /// Property array with 2 positions for the ghosts that are outside
+        /// the git repository, ghosts that count for the win state.<br>
+        /// Can only be changed from inside the Board class.
+        /// </value>
+        public Cell[] ghostsOutside { get; private set; }
+
         // Constructor that receives a player name
         /// <summary>
         /// Constructor that initializes the player's ghost array 
@@ -32,7 +40,19 @@ namespace EightTeenGhosts
         public Player(string playerName)
         {
             PlayerName = playerName;
+            ghostsOutside = new Cell[9];
+            Dungeon = new Cell[9];
             PlayerGhosts = new Cell[9];
+            InitializePools();
+        }
+
+        private void InitializePools()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                ghostsOutside[i] = new Cell(CellType.Ghost);
+                Dungeon[i] = new Cell(CellType.Ghost);
+            }
         }
 
         /// <summary>
@@ -56,6 +76,27 @@ namespace EightTeenGhosts
                     PlayerGhosts[i] = new Cell(type, color, position);
                     break;
                 }
+            }
+        }
+
+        public void RemoveGhost(Position position, string placeArrayName)
+        {
+            int index;
+            index = 0;
+            for (int i = 0; i < PlayerGhosts.Length; i++)
+            {
+                if (PlayerGhosts[i].Position == position)
+                    index = i;
+            }
+            if (placeArrayName == "Dungeon")
+            {
+                Dungeon[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 6;
+            }
+            else if (placeArrayName == "Outside")
+            {
+                ghostsOutside[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 6;
             }
         }
 
@@ -122,7 +163,7 @@ namespace EightTeenGhosts
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == i && ghost.Position.y == j 
+                        if (ghost.Position.x == i && ghost.Position.y == j
                             && cellIndex == inputIndex)
                         {
                             ghostPosition = ghost.Position;
