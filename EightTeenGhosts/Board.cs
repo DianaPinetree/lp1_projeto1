@@ -93,7 +93,7 @@ namespace EightTeenGhosts
                 for (int j = 0; j < boardState.GetLength(1); j++)
                 {
                     boardState[i, j] = new Cell
-                        (CellType.Empty, CellColor.White, new Position(i,j));
+                        (CellType.Empty, CellColor.White, new Position(i, j));
                 }
             }
         }
@@ -162,32 +162,6 @@ namespace EightTeenGhosts
             boardState[position.x, position.y].Color = color;
         }
 
-
-        /// <summary>
-        /// Moves a ghost to a position given by the player.<br> 
-        /// The input is given through the arrow keys.
-        /// </summary>
-        /// <param name="gPos"> 
-        /// Initial Position of the ghost you want to move
-        /// </param>
-        public void MoveGhost(Position gPos)
-        {
-            CellColor ghostColor = boardState[gPos.x, gPos.y].Color;
-
-            Console.WriteLine("What direction will you move to?\n" +
-                "Select your direction with the arrow keys.");
-            key = Console.ReadKey().Key;
-
-            ghostColor = boardState[ghostPos.x, ghostPos.y].Color;
-            boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-            switch (key)
-            {
-                    break;
-            }
-            SetEmptyColors();
-            boardState[ghostPos.x, ghostPos.y].Type = CellType.Ghost;
-            boardState[ghostPos.x, ghostPos.y].Color = ghostColor;
-        }
         private CellColor CellSetup(Position setupPos, CellColor ghostColor)
         {
             boardState[setupPos.x, setupPos.y].Type = CellType.Empty;
@@ -197,3 +171,4 @@ namespace EightTeenGhosts
         }
     }
 }
+

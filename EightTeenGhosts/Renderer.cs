@@ -19,6 +19,7 @@ namespace EightTeenGhosts
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
             int cols = board.boardState.GetLength(1);
+
             // Print out the top of the board
             Console.WriteLine(" _____________________________");
 
@@ -33,39 +34,52 @@ namespace EightTeenGhosts
                     CellColor color;
                     CellType type;
 
+                    bool isGhost;
+                    char playerChar;
+                    Position currentPos;
+
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
-                    // Check what is the type of the current cell and print
-                    // the corresponding type
-                    switch (type)
-                    {
-                        case (CellType.Empty):
-                            PrintCell(color, j);
-                            break;
-                        case (CellType.Mirror):
-                            PrintMirror();
-                            break;
-                        case (CellType.Portal):
-                            PrintCell(color, j, 'P');
-                            break;
-                    }
-
+                    isGhost = false;
+                    playerChar = ' ';
+                    currentPos = new Position(i,j);
                     for (int k = 0; k < 9; k++)
                     {
-                        if (p1Ghosts[k].Position.x == i
-                            && p1Ghosts[k].Position.y == j)
+                        if (currentPos == p1Ghosts[k].Position)
                         {
                             color = p1Ghosts[k].Color;
-                            PrintCell(color, j, 'A');
-                            break;
+                            playerChar = 'A';
+                            isGhost = true;
                         }
-                        else if (p2Ghosts[k].Position.x == i
-                            && p2Ghosts[k].Position.y == j)
+                        else if (board.boardState[i, j]
+                            .Position == p2Ghosts[k].Position)
                         {
                             color = p2Ghosts[k].Color;
-                            PrintCell(color, j, 'B');
-                            break;
+                            playerChar = 'B';
+                            isGhost = true;
+                        }
+                    }
+
+                    if (isGhost)
+                    {
+                        PrintCell(color, j, playerChar);
+                    }
+                    else
+                    {
+                        // Check what is the type of the current cell and print
+                        // the corresponding type
+                        switch (type)
+                        {
+                            case (CellType.Empty):
+                                PrintCell(color, j);
+                                break;
+                            case (CellType.Mirror):
+                                PrintMirror();
+                                break;
+                            case (CellType.Portal):
+                                PrintCell(color, j, 'P');
+                                break;
                         }
                     }
                 }
