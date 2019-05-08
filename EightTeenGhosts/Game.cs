@@ -25,11 +25,14 @@ namespace EightTeenGhosts
         private WinChecker winCheck;
         private Text gameText;
 
+        private bool forceEnd;
+
         public Game()
         {
             winCheck = new WinChecker();
             gameBoard = new Board();
             gameText = new Text();
+            forceEnd = false;
 
         }
 
@@ -85,7 +88,8 @@ namespace EightTeenGhosts
         {
             Console.Clear();
             // Game Loop
-            while (!winCheck.IsWin(gameBoard.ghostsOutside))
+            while (!winCheck.IsWin(player1.ghostsOutside) ||
+                !winCheck.IsWin(player2.ghostsOutside) || (forceEnd == true))
             {
                 // Char used to print the current player's turn
                 char turnChar;
@@ -128,7 +132,7 @@ namespace EightTeenGhosts
 
                 // Exit key, force win condition
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
-                    gameBoard.ghostsOutside[0] = CellColor.Blue | CellColor.Yellow | CellColor.Red;
+                    forceEnd = true;
             }
         }
 

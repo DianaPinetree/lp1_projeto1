@@ -9,6 +9,11 @@ namespace EightTeenGhosts
     /// </summary>
     class Player
     {
+        // The number of ghosts a player has of a certain color
+        int rNum = 0;
+        int bNum = 0;
+        int yNum = 0;
+
         /// <value>
         /// Gets and Sets the name of the player of a Player instance.
         /// </value>
@@ -21,6 +26,16 @@ namespace EightTeenGhosts
         /// </value>
         public Cell[] PlayerGhosts { get; private set; }
 
+        public Cell[] Dungeon { get; private set; }
+
+        // Property for the ghosts that have left the castle, player 1 and 2
+        /// <value> 
+        /// Property array with 2 positions for the ghosts that are outside
+        /// the git repository, ghosts that count for the win state.<br>
+        /// Can only be changed from inside the Board class.
+        /// </value>
+        public Cell[] ghostsOutside { get; private set; }
+
         // Constructor that receives a player name
         /// <summary>
         /// Constructor that initializes the player's ghost array 
@@ -30,7 +45,19 @@ namespace EightTeenGhosts
         public Player(string playerName)
         {
             PlayerName = playerName;
+            ghostsOutside = new Cell[9];
+            Dungeon = new Cell[9];
             PlayerGhosts = new Cell[9];
+            InitializePools();
+        }
+
+        private void InitializePools()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                ghostsOutside[i] = new Cell(CellType.Ghost);
+                Dungeon[i] = new Cell(CellType.Ghost);
+            }
         }
 
         /// <summary>
@@ -57,6 +84,27 @@ namespace EightTeenGhosts
             }
         }
 
+        public void RemoveGhost(Position position, string placeArrayName)
+        {
+            int index;
+            index = 0;
+            for (int i = 0; i < PlayerGhosts.Length; i++)
+            {
+                if (PlayerGhosts[i].Position == position)
+                    index = i;
+            }
+            if (placeArrayName == "Dungeon")
+            {
+                Dungeon[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 6;
+            }
+            else if (placeArrayName == "Outside")
+            {
+                ghostsOutside[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 6;
+            }
+        }
+
         /// <summary>
         /// Class to get a color from player input
         /// </summary>
@@ -67,26 +115,46 @@ namespace EightTeenGhosts
             CellColor color;
             int playerColor;
 
+            
+
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
                 "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
 
+            //Checks if the player can put more ghosts of a certain color
+            //ColorCheck();
+
             // Compare and return the corresponding color
-            if (playerColor == 1)
+            if (playerColor == 1 && rNum < 3)
             {
                 color = CellColor.Red;
+                rNum++;
+                // Debug of above
+                Console.WriteLine(rNum);
                 return color;
             }
-            else if (playerColor == 2)
+            else if (playerColor == 2 && bNum < 3)
             {
                 color = CellColor.Blue;
+                bNum++;
+                // Debug of above
+                Console.WriteLine(bNum);
+                return color;
+            }
+            else if (playerColor == 3 && yNum < 3)
+            {
+                color = CellColor.Yellow;
+                yNum++;
+                // Debug of above
+                Console.WriteLine(yNum);
                 return color;
             }
             else
             {
-                color = CellColor.Yellow;
-                return color;
+                Console.WriteLine("Pick a valid colour or " +
+                    "one that still has ghosts for you to place.");
+                return PickColor();
             }
         }
 
@@ -120,7 +188,7 @@ namespace EightTeenGhosts
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == i && ghost.Position.y == j 
+                        if (ghost.Position.x == i && ghost.Position.y == j
                             && cellIndex == inputIndex)
                         {
                             ghostPosition = ghost.Position;

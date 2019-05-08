@@ -58,3 +58,6 @@
 
 
 ### Referências:
+	1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, 
+	o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
+	2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantásmas;
