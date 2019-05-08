@@ -58,11 +58,56 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
+        /// Checks if the player has 3 ghosts of a certain color
+        /// and blocks his options accordingly
+        /// </summary>
+        private void ColorCheck()
+        {
+            // The number of ghosts a player has of a certain color
+            int rNum = 0;
+            int bNum = 0;
+            int yNum = 0;
+
+
+            for (int i = 0; i < PlayerGhosts.Length; i++)
+            {
+                switch (PlayerGhosts[i].Color)
+                {
+                    case (CellColor.Red):
+                        rNum++;
+                        if (rNum > 3)
+                        {
+                            Console.WriteLine("Test Red");
+                        }
+                        break;
+                    case (CellColor.Blue):
+                        bNum++;
+                        if (bNum > 3)
+                        {
+                            Console.WriteLine("Test Blue");
+                        }
+                        break;
+                    case (CellColor.Yellow):
+                        yNum++;
+                        if (yNum > 3)
+                        {
+                            Console.WriteLine("Test Yellow");
+                        }
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Class to get a color from player input
         /// </summary>
         /// <returns> Returns a Color of type CellColor</returns>
         public CellColor PickColor()
         {
+            // Color check method
+            ColorCheck();
+
+
             // Color and player input
             CellColor color;
             int playerColor;
