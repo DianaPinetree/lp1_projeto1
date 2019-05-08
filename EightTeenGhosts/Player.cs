@@ -58,80 +58,60 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Checks if the player has 3 ghosts of a certain color
-        /// and blocks his options accordingly
-        /// </summary>
-        private void ColorCheck()
-        {
-            // The number of ghosts a player has of a certain color
-            int rNum = 0;
-            int bNum = 0;
-            int yNum = 0;
-
-
-            for (int i = 0; i < PlayerGhosts.Length; i++)
-            {
-                switch (PlayerGhosts[i].Color)
-                {
-                    case (CellColor.Red):
-                        rNum++;
-                        if (rNum > 3)
-                        {
-                            Console.WriteLine("Test Red");
-                        }
-                        break;
-                    case (CellColor.Blue):
-                        bNum++;
-                        if (bNum > 3)
-                        {
-                            Console.WriteLine("Test Blue");
-                        }
-                        break;
-                    case (CellColor.Yellow):
-                        yNum++;
-                        if (yNum > 3)
-                        {
-                            Console.WriteLine("Test Yellow");
-                        }
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
         /// Class to get a color from player input
         /// </summary>
         /// <returns> Returns a Color of type CellColor</returns>
         public CellColor PickColor()
         {
-            // Color check method
-            ColorCheck();
-
-
             // Color and player input
             CellColor color;
             int playerColor;
+
+            // The number of ghosts a player has of a certain color
+            int rNum = 0;
+            int bNum = 0;
+            int yNum = 0;
 
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
                 "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
 
+            //Checks if the player can put more ghosts of a certain color
+            //ColorCheck();
+
             // Compare and return the corresponding color
             if (playerColor == 1)
             {
                 color = CellColor.Red;
+                // Why you no increment 
+                rNum++;
+                // Debug of above
+                Console.WriteLine(rNum);
                 return color;
             }
             else if (playerColor == 2)
             {
                 color = CellColor.Blue;
+                // Why you no increment 
+                bNum++;
+                // Debug of above
+                Console.WriteLine(bNum);
+                return color;
+            }
+            else if (playerColor == 3)
+            {
+                color = CellColor.Yellow;
+                // Why you no increment 
+                yNum++;
+                // Debug of above
+                Console.WriteLine(yNum);
                 return color;
             }
             else
             {
-                color = CellColor.Yellow;
-                return color;
+                Console.WriteLine("Pick a valid colour.");
+                return PickColor();
             }
         }
 
