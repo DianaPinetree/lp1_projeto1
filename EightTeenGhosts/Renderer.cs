@@ -44,6 +44,7 @@ namespace EightTeenGhosts
                     isGhost = false;
                     playerChar = ' ';
                     currentPos = new Position(i,j);
+
                     for (int k = 0; k < 9; k++)
                     {
                         if (currentPos == p1Ghosts[k].Position)
@@ -52,13 +53,14 @@ namespace EightTeenGhosts
                             playerChar = 'A';
                             isGhost = true;
                         }
-                        else if (board.boardState[i, j]
-                            .Position == p2Ghosts[k].Position)
+                        else if (currentPos == p2Ghosts[k].Position)
                         {
                             color = p2Ghosts[k].Color;
                             playerChar = 'B';
                             isGhost = true;
                         }
+                        else
+                            isGhost = false;
                     }
 
                     if (isGhost)
