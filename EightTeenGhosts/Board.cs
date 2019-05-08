@@ -45,6 +45,17 @@ namespace EightTeenGhosts
             SetPortals();
         }
 
+        public void RestartBoard()
+        {
+            // Set Blank colored spaces of the board
+            SetBlanks();
+            SetEmptyColors();
+
+            // Place the rest of the pieces
+            SetMirrors();
+            SetPortals();
+        }
+
         /// <summary>
         /// Builds the mirrors in the board
         /// </summary>
@@ -81,7 +92,8 @@ namespace EightTeenGhosts
             {
                 for (int j = 0; j < boardState.GetLength(1); j++)
                 {
-                    boardState[i, j] = new Cell(CellType.Empty);
+                    boardState[i, j] = new Cell
+                        (CellType.Empty, CellColor.White, new Position(i,j));
                 }
             }
         }
@@ -172,8 +184,8 @@ namespace EightTeenGhosts
             {
                     break;
             }
-            boardState[ghostPos.x, ghostPos.y].Type = CellType.Ghost;
             SetEmptyColors();
+            boardState[ghostPos.x, ghostPos.y].Type = CellType.Ghost;
             boardState[ghostPos.x, ghostPos.y].Color = ghostColor;
         }
         private CellColor CellSetup(Position setupPos, CellColor ghostColor)
