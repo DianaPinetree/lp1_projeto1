@@ -157,7 +157,7 @@ namespace EightTeenGhosts
         {
             CellColor ghostColour;
             Console.WriteLine("What direction will you move to?\n" +
-                "Select your direct with the arrow keys.");
+                "Select your direction with the arrow keys.");
             switch (Console.ReadKey().Key)
             {
                 case (ConsoleKey.DownArrow):

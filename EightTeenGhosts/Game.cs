@@ -23,11 +23,13 @@ namespace EightTeenGhosts
         // Board and win checker instances
         private Board gameBoard;
         private WinChecker winCheck;
+        private Text gameText;
 
         public Game()
         {
             winCheck = new WinChecker();
             gameBoard = new Board();
+            gameText = new Text();
 
         }
 
@@ -37,14 +39,17 @@ namespace EightTeenGhosts
         /// </summary>
         private void InitializePlayers()
         {
+            // Player name
             string playerName;
 
+            // Asks for the name and saves it in player1
             Console.WriteLine("Player 1>>> A");
             Console.Write("\tWhat's your player name?: ");
             playerName = Console.ReadLine();
 
             player1 = new Player(playerName);
 
+            // Asks for the name and saves it in player2
             Console.WriteLine("Player 2>>> B");
             Console.Write("\tWhat's your player name?: ");
             playerName = Console.ReadLine();
@@ -59,9 +64,17 @@ namespace EightTeenGhosts
         {
             // Encoding for UTF8 Chars
             Console.OutputEncoding = Encoding.UTF8;
+
+            // Initialize players
             InitializePlayers();
+
+            // Start game
             StartGame();
+
+            // Start main game loop
             GameLoop();
+
+            // Wait for player input to close
             Console.Read();
         }
 
@@ -74,7 +87,10 @@ namespace EightTeenGhosts
             // Game Loop
             while (!winCheck.IsWin(gameBoard.ghostsOutside))
             {
+                // Char used to print the current player's turn
                 char turnChar;
+
+                // Pick turn
                 if (turns % 2 == 0)
                 {
                     currentPlayer = player1;
@@ -87,11 +103,27 @@ namespace EightTeenGhosts
                 }
                 turns++;
 
-
-                Renderer.DrawBoard(gameBoard, player1);
+                // Render board without any changes & Player's name
                 Console.WriteLine(currentPlayer.PlayerName + ": " + turnChar);
+                Renderer.DrawBoard(gameBoard, player1);
 
-                // Exit key
+                // Pick the current player action
+                gameText.ActionsText();
+                if (currentPlayer.PickAction() == 1)
+                {
+                    // Move a ghost
+                    Renderer.EnumeratePlayerGhosts(currentPlayer, gameBoard);
+                    gameBoard.MoveGhost(currentPlayer.GetPosition(gameBoard));
+                }
+                else
+                {
+                    // Get a ghost from the dungeon
+                }
+                // DO current player's actions
+
+                //
+
+                // Exit key, force win condition
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                     gameBoard.ghostsOutside[0] = CellColor.Blue | CellColor.Yellow | CellColor.Red;
             }
@@ -163,10 +195,10 @@ namespace EightTeenGhosts
             {
 
                 // Asks for a color
-                color = Player.PickColor();
+                color = currentPlayer.PickColor();
 
                 // Renders the available respective color cells 
-                Renderer.DrawBoardColor(color, gameBoard);
+                Renderer.EnumerateBoardColor(color, gameBoard);
 
                 // Translates a player input to a board position, saves it in
                 // ghostPosition variable

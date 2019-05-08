@@ -174,5 +174,11 @@ namespace EightTeenGhosts
                 "If such a room is unavailable " +
                 "the ghost can not exit the dungeon.");
         }
+
+        public void ActionsText()
+        {
+            Console.WriteLine("What action do you want to take" +
+                " for your ghosts? \n 1 - Move a ghost \n 2 - Rescue a ghost");
+        }
     }
 }

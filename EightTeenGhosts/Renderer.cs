@@ -84,7 +84,7 @@ namespace EightTeenGhosts
         /// <param name="board"> 
         /// Board variable for the state of the board
         /// </param>
-        public static void DrawBoardColor(CellColor color, Board board)
+        public static void EnumerateBoardColor(CellColor color, Board board)
         {
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
@@ -111,6 +111,60 @@ namespace EightTeenGhosts
                     }
                     else
                         PrintBlank(j);
+                }
+
+                // Print the bottom of the board
+                Console.WriteLine();
+                Console.WriteLine("|_____|_____|_____|_____|_____|");
+            }
+        }
+
+        public static void EnumeratePlayerGhosts(Player player, Board board)
+        {
+            // Get the rows and cols of the board
+            int rows = board.boardState.GetLength(0);
+            int cols = board.boardState.GetLength(1);
+
+            Cell cell;
+            int cellIndex;
+            char cellIndexChar;
+            // Print out the top of the board
+            Console.WriteLine(" _____________________________");
+
+            cellIndex = 1;
+            // For loop to print the inside
+            for (int i = 0; i < rows; i++)
+            {
+                Console.WriteLine("|     |     |     |     |     |");
+                for (int j = 0; j < cols; j++)
+                {
+                    cell = new Cell(CellType.Ghost);
+                    foreach (Cell ghost in player.PlayerGhosts)
+                    {
+
+                        if (ghost.Position.x == i
+                           && ghost.Position.y == j)
+                        {
+                            cell.Position = ghost.Position;
+                            cell.Color = ghost.Color;
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (cell.Position != null)
+                    {
+                        cellIndexChar = (char)(cellIndex + 48);
+                        PrintCell(cell.Color, j, cellIndexChar);
+                        cellIndex++;
+                    }
+                    else
+                        PrintBlank(j);
+
+
                 }
 
                 // Print the bottom of the board
