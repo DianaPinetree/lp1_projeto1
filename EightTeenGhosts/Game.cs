@@ -121,7 +121,9 @@ namespace EightTeenGhosts
                 }
                 // DO current player's actions
 
-                //
+                // 
+
+                // Check for Win state
 
                 // Exit key, force win condition
                 if (Console.ReadKey().Key == ConsoleKey.Escape)

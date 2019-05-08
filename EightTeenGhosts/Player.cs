@@ -112,25 +112,35 @@ namespace EightTeenGhosts
             inputIndex = Math.Clamp(inputIndex, 1, 9);
             cellIndex = 1;
 
+            ghostPosition = new Position();
             // get the corresponding position
             for (int i = 0; i < board.boardState.GetLength(0); i++)
             {
                 for (int j = 0; j < board.boardState.GetLength(1); j++)
                 {
-                    foreach (Cell cell in PlayerGhosts)
+                    foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (i == cell.Position.x && j == cell.Position.y)
+                        if (ghost.Position.x == i && ghost.Position.y == j 
+                            && cellIndex == inputIndex)
                         {
-                            if (inputIndex == cellIndex)
-                            {
-                                // Create a new position with the x,y coordinates
-
-                                ghostPosition = new Position(i, j);
-                                return ghostPosition;
-                            }
+                            ghostPosition = ghost.Position;
+                            break;
+                        }
+                        else
+                        {
+                            continue;
                         }
                     }
-                    cellIndex++;
+                    if (ghostPosition != null)
+                    {
+                        // Create a new position with the x,y coordinates
+
+                        ghostPosition = new Position(i, j);
+                        return ghostPosition;
+
+                    }
+                    else
+                        cellIndex++;
                 }
             }
             return null;
@@ -153,7 +163,7 @@ namespace EightTeenGhosts
         public Position GetPosition(Board board, CellColor color)
         {
             // Return position, player input number and cell number vars
-            Position ghostPosition;
+            Position cellPosition;
             int inputIndex;
             int cellIndex;
 
@@ -178,8 +188,8 @@ namespace EightTeenGhosts
                         if (inputIndex == cellIndex)
                         {
                             // Create a new position with the x,y coordinates
-                            ghostPosition = new Position(i, j);
-                            return ghostPosition;
+                            cellPosition = new Position(i, j);
+                            return cellPosition;
                         }
                         cellIndex++;
                     }

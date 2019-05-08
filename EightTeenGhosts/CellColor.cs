@@ -14,5 +14,6 @@ namespace EightTeenGhosts
         Red = 1 << 0,
         Blue = 1 << 1,
         Yellow = 1 << 2,
+        White = 1 << 3
     }
 }

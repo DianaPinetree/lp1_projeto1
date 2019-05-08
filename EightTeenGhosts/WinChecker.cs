@@ -39,5 +39,33 @@ namespace EightTeenGhosts
                 return false;
         }
 
+        public CellColor CombatCheck(CellColor p1Color, CellColor p2Color)
+        {
+            switch (determineWinner((int)p1Color, (int)p2Color))
+            {
+                case null: Console.WriteLine("Invalid move");
+                    return CellColor.White;
+                case true: Console.WriteLine("Player1 won");
+                    return p1Color;
+                default:
+                    Console.WriteLine("Player2 won");
+                    return p2Color;
+            }
+        }
+
+        bool? determineWinner(int player1Selection, int player2Selection)
+        {
+
+            bool?[,] winMatrix = {
+            {null, false, true },
+            {true, null, false },
+            {false, true, null}
+        };
+
+            if (winMatrix[player1Selection, player2Selection] == null)
+                return null;
+            return (winMatrix[player1Selection, player2Selection] == true) ? true : false;
+        }
+
     }
 }
