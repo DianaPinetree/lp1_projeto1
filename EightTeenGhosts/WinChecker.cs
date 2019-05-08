@@ -28,15 +28,23 @@ namespace EightTeenGhosts
         /// Returns true if there's a winning player, 
         /// false if no one is winning
         /// </returns>
-        public bool IsWin(CellColor[] ghostsOutside)
+        public bool IsWin(Cell[] playerGhosts)
         {
-            if ((winColor == ghostsOutside[0])
-                || (winColor == ghostsOutside[1]))
+            if ((CumulativeColor(playerGhosts) & winColor) == winColor)
             {
                 return true;
             }
             else
                 return false;
+        }
+
+        private CellColor CumulativeColor(Cell[] playerGhosts)
+        {
+            CellColor color;
+            color = CellColor.White;
+            foreach (Cell ghost in playerGhosts)
+                color |= ghost.Color;
+            return color;
         }
 
         public CellColor CombatCheck(CellColor attacker, CellColor defender)
