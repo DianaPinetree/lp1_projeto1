@@ -39,32 +39,29 @@ namespace EightTeenGhosts
                 return false;
         }
 
-        public CellColor CombatCheck(CellColor p1Color, CellColor p2Color)
+        public CellColor CombatCheck(CellColor attacker, CellColor defender)
         {
-            switch (determineWinner((int)p1Color, (int)p2Color))
+            switch (determineWinner(attacker, defender))
             {
-                case null: Console.WriteLine("Invalid move");
-                    return CellColor.White;
-                case true: Console.WriteLine("Player1 won");
-                    return p1Color;
+                case true: Console.WriteLine("Player1 won the fight!");
+                    return attacker;
                 default:
-                    Console.WriteLine("Player2 won");
-                    return p2Color;
+                    Console.WriteLine("Player2 won the fight!");
+                    return defender;
             }
         }
 
-        bool? determineWinner(int player1Selection, int player2Selection)
+        private bool determineWinner(CellColor color1, 
+            CellColor color2)
         {
-
-            bool?[,] winMatrix = {
-            {null, false, true },
-            {true, null, false },
-            {false, true, null}
-            };
-
-            if (winMatrix[player1Selection, player2Selection] == null)
-                return null;
-            return (winMatrix[player1Selection, player2Selection] == true) ? true : false;
+            if (color1 == CellColor.Red && color2 == CellColor.Blue)
+                return true;
+            else if (color1 == CellColor.Blue && color2 == CellColor.Yellow)
+                return true;
+            else if (color1 == CellColor.Yellow && color2 == CellColor.Red)
+                return true;
+            else
+                return false;
         }
 
     }

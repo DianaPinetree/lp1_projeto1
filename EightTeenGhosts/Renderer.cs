@@ -35,37 +35,41 @@ namespace EightTeenGhosts
                     CellType type;
 
                     bool isGhost;
+                    Cell ghostCell;
                     char playerChar;
-                    Position currentPos;
 
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
                     isGhost = false;
                     playerChar = ' ';
-                    currentPos = new Position(i,j);
 
+                    ghostCell = new Cell(CellType.Ghost);
                     for (int k = 0; k < 9; k++)
                     {
-                        if (currentPos == p1Ghosts[k].Position)
+                        if (p1Ghosts[k].Position.x == i
+                           && p1Ghosts[k].Position.y == j)
                         {
-                            color = p1Ghosts[k].Color;
+                            ghostCell.Color = p1Ghosts[k].Color;
+                            isGhost = true;
                             playerChar = 'A';
-                            isGhost = true;
+                            break;
                         }
-                        else if (currentPos == p2Ghosts[k].Position)
+                        else if (p2Ghosts[k].Position.x == i
+                           && p2Ghosts[k].Position.y == j)
                         {
-                            color = p2Ghosts[k].Color;
-                            playerChar = 'B';
+                            ghostCell.Color = p1Ghosts[k].Color;
                             isGhost = true;
+                            playerChar = 'B';
+                            break;
                         }
                         else
-                            isGhost = false;
+                            continue;
                     }
 
                     if (isGhost)
                     {
-                        PrintCell(color, j, playerChar);
+                        PrintCell(ghostCell.Color, j, playerChar);
                     }
                     else
                     {
