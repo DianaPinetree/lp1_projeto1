@@ -30,5 +30,11 @@ namespace EightTeenGhosts
             x = _row;
             y = _col;
         }
+
+        public Position()
+        {
+            x = 0;
+            y = 0;
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace EightTeenGhosts
         // Main board state, bi-dimensional array made of Cell's
         internal Cell[,] boardState;
 
+        private uint boardWidth;
+        private uint boardHeight;
+
         // Property for the ghosts that have left the castle, player 1 and 2
         /// <value> 
         /// Property array with 2 positions for the ghosts that are outside
@@ -30,6 +33,8 @@ namespace EightTeenGhosts
 
             // Initialize board states
             boardState = new Cell[5, 5];
+            boardWidth = 5;
+            boardHeight = 5;
 
             // Set Blank colored spaces of the board
             SetBlanks();
@@ -138,14 +143,14 @@ namespace EightTeenGhosts
         /// <param name="type">
         /// CellType is being replaced in the board position
         /// </param>
-        public void SetPosition(Position position, 
+        public void SetPosition(Position position,
             CellColor color, CellType type)
         {
             boardState[position.x, position.y].Type = type;
             boardState[position.x, position.y].Color = color;
         }
 
-        
+
         /// <summary>
         /// Moves a ghost to a position given by the player.<br> 
         /// The input is given through the arrow keys.
@@ -155,50 +160,32 @@ namespace EightTeenGhosts
         /// </param>
         public void MoveGhost(Position ghostPos)
         {
-            CellColor ghostColour;
+            CellColor ghostColor;
+            ConsoleKey key;
             Console.WriteLine("What direction will you move to?\n" +
                 "Select your direction with the arrow keys.");
-            switch (Console.ReadKey().Key)
+            key = Console.ReadKey().Key;
+
+            ghostColor = boardState[ghostPos.x, ghostPos.y].Color;
+            boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
+            switch (key)
             {
-                case (ConsoleKey.DownArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x + 1, ghostPos.y]
-                        .Type = CellType.Ghost;
-                    SetEmptyColors();
-                    boardState[ghostPos.x + 1, ghostPos.y].Color = ghostColour;
-                    ghostPos.x = ghostPos.x + 1;
+                case ConsoleKey.DownArrow:
+                    if (ghostPos.y < boardHeight - 1) ghostPos.y++;
                     break;
-                case (ConsoleKey.UpArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x - 1, ghostPos.y]
-                        .Type = CellType.Ghost;
-                    SetEmptyColors();
-                    boardState[ghostPos.x - 1, ghostPos.y].Color = ghostColour;
-                    ghostPos.x = ghostPos.x - 1;
+                case ConsoleKey.UpArrow:
+                    if (ghostPos.y > 0) ghostPos.y--;
                     break;
-                case (ConsoleKey.LeftArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y - 1]
-                        .Type = CellType.Ghost;
-                    SetEmptyColors();
-                    boardState[ghostPos.x, ghostPos.y - 1]
-                        .Color = ghostColour;
-                    ghostPos.y = ghostPos.y - 1;
+                case ConsoleKey.LeftArrow:
+                    if (ghostPos.x > 0) ghostPos.x--;
                     break;
-                case (ConsoleKey.RightArrow):
-                    ghostColour = boardState[ghostPos.x, ghostPos.y].Color;
-                    boardState[ghostPos.x, ghostPos.y].Type = CellType.Empty;
-                    boardState[ghostPos.x, ghostPos.y + 1]
-                        .Type = CellType.Ghost;
-                    SetEmptyColors();
-                    boardState[ghostPos.x, ghostPos.y + 1].Color = ghostColour;
-                    ghostPos.y = ghostPos.y + 1;
+                case ConsoleKey.RightArrow:
+                    if (ghostPos.x < boardWidth - 1) ghostPos.x++;
                     break;
             }
-            
+            boardState[ghostPos.x, ghostPos.y].Type = CellType.Ghost;
+            SetEmptyColors();
+            boardState[ghostPos.x, ghostPos.y].Color = ghostColor;
         }
     }
 }
