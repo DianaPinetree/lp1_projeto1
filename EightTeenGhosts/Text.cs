@@ -73,7 +73,7 @@ namespace EightTeenGhosts
         /// </summary>
         public void BoardLayoutText()
         {
-            // 
+            // Converts text encodiing from ASCII to Unicode
             Console.OutputEncoding = System.Text.Encoding.Unicode;
 
             // Board layout
