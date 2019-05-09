@@ -1,5 +1,5 @@
 ﻿<!--\mainpage-->
-# Relatório do trabalho
+# Relatório do Trabalho
 ## **1º Projeto de Linguagens de Programação 1 - 18Ghosts**
 
 **Trabalho realizado por:**
