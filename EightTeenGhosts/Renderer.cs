@@ -14,7 +14,7 @@ namespace EightTeenGhosts
         /// </summary>
         /// <param name="board"></param>
         static public void DrawBoard(Board board,
-            Cell[] p1Ghosts, Cell[] p2Ghosts)
+            List<Cell> p1Ghosts, List<Cell> p2Ghosts, Portal[] portals)
         {
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
@@ -35,13 +35,16 @@ namespace EightTeenGhosts
                     CellType type;
 
                     bool isGhost;
+                    bool isPortal;
                     Cell ghostCell;
+                    Portal portalCell;
                     char playerChar;
 
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
                     type = board.boardState[i, j].Type;
                     isGhost = false;
+                    isPortal = false;
                     playerChar = ' ';
 
                     ghostCell = new Cell(CellType.Ghost);
@@ -67,9 +70,26 @@ namespace EightTeenGhosts
                             continue;
                     }
 
+                    portalCell = new Portal(new Position(i,j), color, "Up");
+                    for (int k = 0; k < 3; k++)
+                    {
+                        if (portals[k].Position.x == i
+                            && portals[k].Position.y == j)
+                        {
+                            portalCell.OpenSide = portals[k].OpenSide;
+                            portalCell.Color = portals[k].Color;
+                            isPortal = true;
+                        }
+                    }
+
                     if (isGhost)
                     {
                         PrintCell(ghostCell.Color, j, playerChar);
+                    }
+                    else if (isPortal)
+                    {
+                        PrintCell(portalCell.Color, j, 
+                            portalCell.GetSideChar());
                     }
                     else
                     {
@@ -83,9 +103,6 @@ namespace EightTeenGhosts
                             case (CellType.Mirror):
                                 PrintMirror();
                                 break;
-                            case (CellType.Portal):
-                                PrintCell(color, j, 'P');
-                                break;
                         }
                     }
                 }
@@ -93,6 +110,27 @@ namespace EightTeenGhosts
                 Console.WriteLine();
                 Console.WriteLine("|_____|_____|_____|_____|_____|");
             }
+        }
+
+        public static void DrawDungeon(Player currentPlayer)
+        {
+            // Informative line
+            Console.WriteLine("Ghosts in player's Dungeon: ");
+            // Top line
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
+                Console.Write("_______");
+            Console.WriteLine();
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
+                Console.Write("|     |");
+            Console.WriteLine();
+            // Print lines with ghosts
+            foreach (Cell ghost in currentPlayer.Dungeon)
+            {
+                PrintCell(ghost.Color, 4, 'G');
+            }
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
+                Console.Write("|_____|");
+            Console.WriteLine();
         }
 
         /// <summary>

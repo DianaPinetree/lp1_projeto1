@@ -10,9 +10,9 @@ namespace EightTeenGhosts
     class Player
     {
         // The number of ghosts a player has of a certain color
-        int rNum = 0;
-        int bNum = 0;
-        int yNum = 0;
+        private int rNum = 0;
+        private int bNum = 0;
+        private int yNum = 0;
 
         /// <value>
         /// Gets and Sets the name of the player of a Player instance.
@@ -24,9 +24,9 @@ namespace EightTeenGhosts
         /// Cell array property for the player's owned ghosts with a get and a
         /// private set
         /// </value>
-        public Cell[] PlayerGhosts { get; private set; }
+        public List<Cell> PlayerGhosts { get; set; }
 
-        public Cell[] Dungeon { get; private set; }
+        public List<Cell> Dungeon { get; private set; }
 
         // Property for the ghosts that have left the castle, player 1 and 2
         /// <value> 
@@ -34,7 +34,7 @@ namespace EightTeenGhosts
         /// the git repository, ghosts that count for the win state.<br>
         /// Can only be changed from inside the Board class.
         /// </value>
-        public Cell[] ghostsOutside { get; private set; }
+        public List<Cell> ghostsOutside { get; private set; }
 
         // Constructor that receives a player name
         /// <summary>
@@ -45,19 +45,14 @@ namespace EightTeenGhosts
         public Player(string playerName)
         {
             PlayerName = playerName;
-            ghostsOutside = new Cell[9];
-            Dungeon = new Cell[9];
-            PlayerGhosts = new Cell[9];
-            InitializePools();
+            InitLists();
         }
 
-        private void InitializePools()
+        private void InitLists()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                ghostsOutside[i] = new Cell(CellType.Ghost);
-                Dungeon[i] = new Cell(CellType.Ghost);
-            }
+            PlayerGhosts = new List<Cell>();
+            Dungeon = new List<Cell>();
+            ghostsOutside = new List<Cell>();
         }
 
         /// <summary>
@@ -74,7 +69,7 @@ namespace EightTeenGhosts
             // Type that will be added to the array of ghosts
             CellType type = CellType.Ghost;
 
-            for (int i = 0; i < PlayerGhosts.Length; i++)
+            for (int i = 0; i < PlayerGhosts.Count; i++)
             {
                 if (PlayerGhosts[i] == null)
                 {
@@ -88,7 +83,7 @@ namespace EightTeenGhosts
         {
             int index;
             index = 0;
-            for (int i = 0; i < PlayerGhosts.Length; i++)
+            for (int i = 0; i < PlayerGhosts.Count; i++)
             {
                 if (PlayerGhosts[i].Position == position)
                     index = i;
@@ -101,7 +96,7 @@ namespace EightTeenGhosts
             else if (placeArrayName == "Outside")
             {
                 ghostsOutside[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 6;
+                PlayerGhosts[index].Position.x = 7;
             }
         }
 
@@ -115,44 +110,36 @@ namespace EightTeenGhosts
             CellColor color;
             int playerColor;
 
-            
-
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
                 "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
-
-            //Checks if the player can put more ghosts of a certain color
-            //ColorCheck();
 
             // Compare and return the corresponding color
             if (playerColor == 1 && rNum < 3)
             {
                 color = CellColor.Red;
                 rNum++;
-                // Debug of above
-                Console.WriteLine(rNum);
+                Console.WriteLine("Red Ghosts placed: {0}", rNum);
                 return color;
             }
             else if (playerColor == 2 && bNum < 3)
             {
                 color = CellColor.Blue;
                 bNum++;
-                // Debug of above
-                Console.WriteLine(bNum);
+                Console.WriteLine("Blue Ghosts placed: {0}", bNum);
                 return color;
             }
             else if (playerColor == 3 && yNum < 3)
             {
                 color = CellColor.Yellow;
                 yNum++;
-                // Debug of above
-                Console.WriteLine(yNum);
+                Console.WriteLine("Yellow Ghosts placed: {0}", yNum);
                 return color;
             }
             else
             {
-                Console.WriteLine("Pick a valid colour or " +
+                Console.WriteLine("Pick a valid color or " +
                     "one that still has ghosts for you to place.");
                 return PickColor();
             }
@@ -188,29 +175,14 @@ namespace EightTeenGhosts
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == i && ghost.Position.y == j
-                            && cellIndex == inputIndex)
-                        {
-                            ghostPosition = ghost.Position;
-                            break;
-                        }
-                        else
-                        {
-                            continue;
-                        }
+                        if (ghost.Position.x == i
+                            && ghost.Position.y == j) return ghost.Position;
+                        else if (ghost.Position == null) cellIndex++;
+                        else continue;
                     }
-                    if (ghostPosition != null)
-                    {
-                        // Create a new position with the x,y coordinates
-
-                        ghostPosition = new Position(i, j);
-                        return ghostPosition;
-
-                    }
-                    else
-                        cellIndex++;
                 }
             }
+
             return null;
         }
 
@@ -265,5 +237,41 @@ namespace EightTeenGhosts
             }
             return null;
         }
+
+        public void MoveGhost(Position position)
+        {
+            string moveInput;
+            int indexInArray;
+
+            indexInArray = PlayerGhosts.IndexOf
+                (PlayerGhosts.Find(x => x.Position == position));
+
+            Console.WriteLine("What direction are you headed to?\n" +
+                "w - up; a - left; s - down; d - right");
+            moveInput = Console.ReadLine();
+
+            switch (moveInput)
+            {
+                case ("w"):
+                    if (PlayerGhosts[indexInArray].Position.y > 0)
+                        PlayerGhosts[indexInArray].Position.y--;
+                    break;
+                case ("a"):
+                    if (PlayerGhosts[indexInArray].Position.x > 0)
+                        PlayerGhosts[indexInArray].Position.x--;
+                    break;
+                case ("s"):
+                    if (PlayerGhosts[indexInArray].Position.y < 5)
+                        PlayerGhosts[indexInArray].Position.y++;
+                    break;
+                case ("d"):
+                    if (PlayerGhosts[indexInArray].Position.x < 5)
+                        PlayerGhosts[indexInArray].Position.x++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

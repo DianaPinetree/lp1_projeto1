@@ -24,6 +24,7 @@ namespace EightTeenGhosts
         private Board gameBoard;
         private WinChecker winCheck;
         private Text gameText;
+        private Portal[] portals;
 
         private bool forceEnd;
 
@@ -60,6 +61,17 @@ namespace EightTeenGhosts
             player2 = new Player(playerName);
         }
 
+        private void InitializePortals()
+        {
+            portals = new Portal[3];
+            portals[0] = new Portal(new Position(0,2), CellColor.Red,
+                "Up");
+            portals[1] = new Portal(new Position(2, 4), CellColor.Yellow,
+                "Right");
+            portals[2] = new Portal(new Position(4, 2), CellColor.Blue,
+                "Down");
+        }
+
         /// <summary>
         /// Contains the whole game logic
         /// </summary>
@@ -68,6 +80,7 @@ namespace EightTeenGhosts
             // Encoding for UTF8 Chars
             Console.OutputEncoding = Encoding.UTF8;
 
+            InitializePortals();
             // Initialize players
             InitializePlayers();
 
@@ -110,25 +123,31 @@ namespace EightTeenGhosts
                 // Render board without any changes & Player's name
                 Console.WriteLine(currentPlayer.PlayerName + ": " + turnChar);
                 Renderer.DrawBoard(gameBoard, 
-                    player1.PlayerGhosts, player2.PlayerGhosts);
-
+                    player1.PlayerGhosts, player2.PlayerGhosts, portals);
+                Renderer.DrawDungeon(currentPlayer);
                 // Pick the current player action
                 gameText.ActionsText();
-                if (currentPlayer.PickAction() == 1)
+
+                switch (currentPlayer.PickAction())
                 {
-                    // Move a ghost
-                    Renderer.EnumeratePlayerGhosts(currentPlayer, gameBoard);
-                }
-                else
-                {
-                    // Get a ghost from the dungeon
-                }
+                    case 1:
+                        {
+                            // Move a ghost
+                            Renderer.EnumeratePlayerGhosts(currentPlayer,
+                                gameBoard);
+                            Console.WriteLine(currentPlayer.GetPosition(gameBoard).x);
+
+                            break;
+                        }
+                    case 2:
+                        {
+                            // Get Ghost from dungeon
+                            break;
+                        }
+                }                
                 // DO current player's actions
 
                 // 
-
-                // Check for Win state
-
                 // Exit key, force win condition
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                     forceEnd = true;
@@ -143,7 +162,8 @@ namespace EightTeenGhosts
         private void StartGame()
         {
             turns = 0;
-            gameText.StartupText();
+            Text.StartupText();
+            Text.GetHelp();
             Continue();
 
             // Place the first ghost, first player
@@ -211,7 +231,7 @@ namespace EightTeenGhosts
                 ghostPosition = currentPlayer.GetPosition(gameBoard, color);
 
                 // Add the created ghost to the respective player's ghost list
-                currentPlayer.AppendGhost(ghostPosition, color);
+                currentPlayer.PlayerGhosts.Add(new Cell(CellType.Ghost, color, ghostPosition));
 
                 // Sets the created ghost into the board position in gameBoard
                 gameBoard.SetPosition(ghostPosition, color, CellType.Ghost);

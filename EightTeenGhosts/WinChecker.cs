@@ -28,7 +28,7 @@ namespace EightTeenGhosts
         /// Returns true if there's a winning player, 
         /// false if no one is winning
         /// </returns>
-        public bool IsWin(Cell[] playerGhosts)
+        public bool IsWin(List<Cell> playerGhosts)
         {
             if ((CumulativeColor(playerGhosts) & winColor) == winColor)
             {
@@ -38,7 +38,7 @@ namespace EightTeenGhosts
                 return false;
         }
 
-        private CellColor CumulativeColor(Cell[] playerGhosts)
+        private CellColor CumulativeColor(List<Cell> playerGhosts)
         {
             CellColor color;
             color = CellColor.White;

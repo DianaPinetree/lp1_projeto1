@@ -145,14 +145,6 @@ namespace EightTeenGhosts
             boardState[position.x, position.y].Type = type;
             boardState[position.x, position.y].Color = color;
         }
-
-        private CellColor CellSetup(Position setupPos, CellColor ghostColor)
-        {
-            boardState[setupPos.x, setupPos.y].Type = CellType.Empty;
-            SetPortals();
-            SetMirrors();
-            return ghostColor;
-        }
     }
 }
 

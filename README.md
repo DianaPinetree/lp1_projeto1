@@ -1,4 +1,4 @@
-﻿\mainpage
+﻿<!--\mainpage-->
 ## Relatório do trabalho
 # **1º Projeto de Linguagens de Programação I - 18Ghosts**
 
@@ -13,13 +13,19 @@
 
 - Afonso Rosa:
     
-    - PLACEHOLDER
+    - Class Text Métodos e texto que compõe o corpo da class
 - Pedro Inácio:
 
     - PLACEHOLDER
 - Rodrigo Pinheiro:
 
-    - PLACEHOLDER 
+    - Class BoardClass Cell:Class CellColor:Class CellType:Class Game: Class Player:Class Portal:Class Position:Class Program:lass Renderer:Class Text:Comentários Class WinChecker:
+
+
+
+
+
+
 
 
 
@@ -58,6 +64,5 @@
 
 
 ### Referências:
-	1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, 
-	o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
-	2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantásmas;
+1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
+2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantasmas;

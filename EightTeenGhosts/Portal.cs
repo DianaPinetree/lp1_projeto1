@@ -10,17 +10,31 @@ namespace EightTeenGhosts
     /// </summary>
     class Portal
     {
+        private string openSide;
         // Color
-        private CellColor color;
+        public CellColor Color { get; set; }
         // Position of the portal in the board
-        private Position position;
+        public Position Position { get; private set; }
+        // Portal print char
+        private char portalChar;
         // Possible open sides for the portal
         private static string[] openSides;
 
         /// <value>
         /// Contains the current open side of the portal
         /// </value>>
-        public string openSide { get; private set; }
+        public string OpenSide
+        {
+            get
+            {
+                return openSide;
+            }
+            set
+            {
+                openSide = value;
+                SetSideChar(openSide);
+            }
+        }
 
         static Portal()
         {
@@ -29,9 +43,9 @@ namespace EightTeenGhosts
 
         public Portal(Position position, CellColor color, string startingSide)
         {
-            this.color = color;
-            this.position = position;
-            openSide = startingSide;
+            Color = color;
+            Position = position;
+            OpenSide = startingSide;
         }
 
         /// <summary>
@@ -44,9 +58,29 @@ namespace EightTeenGhosts
 
             for (int i = 0; i < openSides.Length - 1; i++)
             {
-                if (openSides[i] == openSide) index = i;
+                if (openSides[i] == OpenSide) index = i;
             }
-            openSide = GetNextSide(openSides, index);
+            OpenSide = GetNextSide(openSides, index);
+        }
+
+        public char GetSideChar()
+        {
+            return portalChar;
+        }
+
+        private void SetSideChar(string side)
+        {
+            switch (side)
+            {
+                case "Up": portalChar = '\u02C4';
+                        break;
+                case "Right": portalChar = '\u02C3';
+                        break;
+                case "Down": portalChar = '\u02C5';
+                        break;
+                case "Left": portalChar = '\u02C2';
+                        break;
+            }
         }
 
         /// <summary>
@@ -79,8 +113,8 @@ namespace EightTeenGhosts
         private Position Neighbours()
         {
             Position checkPos;
-            checkPos = new Position(position.x, position.y);
-            switch (openSide)
+            checkPos = new Position(Position.x, Position.y);
+            switch (OpenSide)
             {
                 case "Up": checkPos.y--;
                     break;
