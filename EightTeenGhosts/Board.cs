@@ -145,39 +145,6 @@ namespace EightTeenGhosts
             boardState[position.x, position.y].Type = type;
             boardState[position.x, position.y].Color = color;
         }
-
-        public void MoveGhost(Position ghostPos)
-        {
-            string moveInput;
-            moveInput = Console.ReadLine();
-            Console.WriteLine("What direction are you headed to?\n" +
-                "w - up; a - left; s - down; d - right");
-            switch (moveInput)
-            {
-                case ("w"):
-                    if (ghostPos.y > 0) ghostPos.x--;
-                    break;
-                case ("a"):
-                    if (ghostPos.x > 0) ghostPos.y--;
-                    break;
-                case ("s"):
-                    if (ghostPos.y < 0) ghostPos.x++;
-                    break;
-                case ("d"):
-                    if (ghostPos.x < 0) ghostPos.y++;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private CellColor CellSetup(Position setupPos, CellColor ghostColor)
-        {
-            boardState[setupPos.x, setupPos.y].Type = CellType.Empty;
-            SetPortals();
-            SetMirrors();
-            return ghostColor;
-        }
     }
 }
 

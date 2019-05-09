@@ -199,7 +199,7 @@ namespace EightTeenGhosts
             {
                 for (int j = 0; j < board.boardState.GetLength(1); j++)
                 {
-                    foreach (Cell ghost in PlayerGhosts)
+                   /*foreach (Cell ghost in PlayerGhosts)
                     {
                         if (ghost.Position.x == i 
                             && ghost.Position.y == j)
@@ -214,6 +214,7 @@ namespace EightTeenGhosts
                     }
                     if (ghostPosition != null)
                     {
+                    if (board.boardState[i, j].)
                         cellIndex++;
                         if (cellIndex == inputIndex)
                         {
@@ -221,6 +222,13 @@ namespace EightTeenGhosts
                             ghostPosition = new Position(i, j);
                             return ghostPosition;
                         }
+                    }*/
+
+                foreach (Cell ghost in PlayerGhosts)
+                    {
+                        if (ghost.Position.x == j
+                            && ghost.Position.y == i) return ghost.Position;
+                        else cellIndex++;
                     }
                 }
             }
@@ -278,5 +286,32 @@ namespace EightTeenGhosts
             }
             return null;
         }
+
+        public Position MoveGhost(Position ghostPos)
+        {
+            string moveInput;
+            Console.WriteLine("What direction are you headed to?\n" +
+                "w - up; a - left; s - down; d - right");
+            moveInput = Console.ReadLine();
+            switch (moveInput)
+            {
+                case ("w"):
+                    if (ghostPos.x > 0) ghostPos.x--;
+                    break;
+                case ("a"):
+                    if (ghostPos.y > 0) ghostPos.y--;
+                    break;
+                case ("s"):
+                    if (ghostPos.x < 5) ghostPos.x++;
+                    break;
+                case ("d"):
+                    if (ghostPos.y < 5) ghostPos.y++;
+                    break;
+                default:
+                    break;
+            }
+            return ghostPos;
+        }
+
     }
 }
