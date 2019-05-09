@@ -201,7 +201,7 @@ namespace EightTeenGhosts
         public Position GetPosition(Board board, CellColor color)
         {
             // Return position, player input number and cell number vars
-            Position cellPosition;
+            Position ghostPos;
             int inputIndex;
             int cellIndex = 1;
 
@@ -225,8 +225,8 @@ namespace EightTeenGhosts
                         if (inputIndex == cellIndex)
                         {
                             // Create a new position with the x,y coordinates
-                            cellPosition = new Position(i, j);
-                            return cellPosition;
+                            ghostPos = new Position(i, j);
+                            return ghostPos;
                         }
                         cellIndex++;
                     }
