@@ -17,11 +17,11 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays the startup text
         /// </summary>
-        public void StartupText()
+        public static void StartupText()
         {
             // Small lore intro/Startup text
             Console.WriteLine("During the past 11 years " +
-                "a group of ghosts has been forsaken " +
+                "a group of ghosts the  has been forsaken " +
                 "inside a small Git repository " +
                 "that no longer gets updated...\n" +
                 "The poor ghosts are lost " +
@@ -36,7 +36,7 @@ namespace EightTeenGhosts
         /// Displays the number of ghosts, their distribution 
         /// and the size of the board in text format
         /// </summary>
-        public void BoardComponentsText()
+        public static void BoardComponentsText()
         {
             // Board components
             Console.WriteLine("In this 2 player game " +
@@ -55,7 +55,7 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays what you need to do in order to win the game
         /// </summary>
-        public void GoalsText()
+        public static void GoalsText()
         {
             // Goals
             Console.WriteLine("As previously said, " +
@@ -71,7 +71,7 @@ namespace EightTeenGhosts
         /// Displays in text format the positions 
         /// of the portals and the mirrors
         /// </summary>
-        public void BoardLayoutText()
+        public static void BoardLayoutText()
         {
             // Converts text encodiing from ASCII to Unicode
             Console.OutputEncoding = System.Text.Encoding.Unicode;
@@ -101,7 +101,7 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays how movement works
         /// </summary>
-        public void MovementsText()
+        public static void MovementsText()
         {
             // Movement & Mirrors
             Console.Write("You can move one(1) of your ghosts orthogonally," +
@@ -115,7 +115,7 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays how combat works
         /// </summary>
-        public void CombatText()
+        public static void CombatText()
         {
             // Combat
             Console.WriteLine("You may move into occupied rooms " +
@@ -133,7 +133,7 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays how the portals work
         /// </summary>
-        public void PortalText()
+        public static void PortalText()
         {
             // Portals
             Console.WriteLine("In order to escape " +
@@ -157,7 +157,7 @@ namespace EightTeenGhosts
         /// <summary>
         /// Displays how to get out of the dungeon
         /// </summary>
-        public void DungeonText()
+        public static void DungeonText()
         {
             // Dungeon
             Console.WriteLine("The dungeon is a nasty place, every defeated " +
