@@ -101,8 +101,8 @@ namespace EightTeenGhosts
         {
             Console.Clear();
             // Game Loop
-            while (!winCheck.IsWin(player1.ghostsOutside) ||
-                !winCheck.IsWin(player2.ghostsOutside) || (forceEnd == true))
+            while (!winCheck.IsWin(player1.GhostsOutside) ||
+                !winCheck.IsWin(player2.GhostsOutside) || (forceEnd == true))
             {
                 // Char used to print the current player's turn
                 char turnChar;
@@ -145,12 +145,16 @@ namespace EightTeenGhosts
                     case 2:
                         {
                             // Get Ghost from dungeon
+                            currentPlayer.PlaceGhost
+                                (currentPlayer.RessurectGhost(), gameBoard);
                             break;
                         }
-                }                
-                // DO current player's actions
+                }
 
-                // 
+                // Check for any ghosts that can leave
+                CheckForPortalsExit(player1);
+                CheckForPortalsExit(player2);
+
                 // Exit key, force win condition
                 if (Console.ReadKey().Key == ConsoleKey.Escape)
                     forceEnd = true;
@@ -238,6 +242,24 @@ namespace EightTeenGhosts
 
                 // Sets the created ghost into the board position in gameBoard
                 gameBoard.SetPosition(ghostPosition, color, CellType.Ghost);
+            }
+        }
+
+        private void CheckForPortalsExit(Player player)
+        {
+            foreach (Portal exit in portals)
+            {
+                if (exit.GhostEnter
+                    (player.PlayerGhosts) == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    player.GhostPushOut
+                        (exit.GhostEnter(player.PlayerGhosts));
+                }
+
             }
         }
     }
