@@ -18,41 +18,23 @@
 
     - PLACEHOLDER
 - Rodrigo Pinheiro:
-
-    - Class BoardClass Cell:Class CellColor:Class CellType:Class Game: Class Player:Class Portal:Class Position:Class Program:lass Renderer:Class Text:Comentários Class WinChecker:
-
-
-
-
-
-
-
+    - Iniciou a solução do projeto e iteração da mesma. Tambem criou as classes iniciais usadas no projeto.
+	- Desenvolveu as classes ao longo do projeto e modificou-as quando necessário.
+	- Gerio a lógica do _Game Loop_ na classe _Game_.
 
 
 ### Arquitetura do Programa:
+- O programa está baseado em 2 enumerações principais _CellType_ e _CellColor_ e uma classe de posição _Position_,
+estas são depois usadas para constituir as unidades básicas do jogo, _Cell_, _Portal_. 
+Achámos necessário separar entre Cell e Portal porque as saídas tinham a peculiaridade de rodarem a sua entrada.
+- Para o jogo funcionar em lógica, foi repartido em elementos, _Board_ _Player_ e _WinChecker_.
+- Assim o tabuleiro de jogo é uma array bidimensional de objetos _Cell_.
+- Os jogadores, cada um, tem uma lista dos seus fantasmas em campo, masmorras e fora do castelo.
+- A classe de verificação _WinChecker_ é a base de uma variavel _CellColor_ com todas as cores combinadas
+para verificação.
 
-- Enumeração para os estados possíveis de 1 célula.
-
-- Class de posição com propriedades Coluna e Linha para guardar 
-	a posição de cada célula
-
-- Class Board para guardar a parte central do jogo, tabuleiro, em que contem
-	a matriz do tabuleiro de valores ESTADO (enumeracao), 
-	funcoes de pedir estado, mudar estados de células e uma forma de keep track
-	do turno em que se está.
-
-- Class Player que controla os inputs feitos pelos jogadores 
-	(maybe arranjar forma de o fazer com rato?) 
-	ex: public Position GetPosition(Board currentState)
-
-- Class WinChecker, isto é uma class unicamente para verificar o estado do jogo
-	através do tabuleiro, funcao para ver se alguem ganhou, e uma para ver se
-	há algum empate.
-	ex: public StateCheck(Board currentState)
-	public bool DrawCheck(Board currentState)
-
-- Class Renderer para desenhar o estado do jogo, tabuleiro, e quem ganha
-	a partir do tabuleiro.
+- A classe _Player_ contem todas os métodos relacionados com _input_ e movimentos de fantasmas.
+- A classe _Renderer_ serve para desenhar o estado do jogo, e células de cores específicas.
 
 #### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
 ![DiagramaUML](diagramaUml.png)
