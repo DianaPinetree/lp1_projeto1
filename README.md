@@ -20,6 +20,7 @@
 - Rodrigo Pinheiro:
     - Iniciou a solução do projeto e iteração da mesma. Tambem criou as classes iniciais usadas no projeto.
 	- Desenvolveu as classes ao longo do projeto e modificou-as quando necessário.
+
     - Construção e estruturação das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Player`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` e documentação adequada das mesmas. 
     - Realização das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` na sua **totalidade** e realização substancial da classe `Player`. 
     - Correção da ortografia na classe `Text`. 
@@ -39,6 +40,7 @@
 - A classe `Renderer` serve para desenhar o estado do jogo, e células de cores específicas.
 
 ##### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
+
 ![DiagramaUML](diagramaUml.png)
 
 ##### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
