@@ -243,7 +243,7 @@ namespace EightTeenGhosts
             indexInArray = PlayerGhosts.IndexOf
                 (PlayerGhosts.Find(x => x.Position.x == position.x && x.Position.y == position.y));
 
-           
+
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
@@ -251,7 +251,7 @@ namespace EightTeenGhosts
             switch (moveInput)
             {
                 case ("w"):
-                    if (PlayerGhosts[indexInArray].Position.x> 0)
+                    if (PlayerGhosts[indexInArray].Position.x > 0)
                         PlayerGhosts[indexInArray].Position.x--;
                     break;
                 case ("a"):
