@@ -26,7 +26,7 @@ namespace EightTeenGhosts
             // For loop to print the inside
             for (int i = 0; i < rows; i++)
             {
-                Console.WriteLine("|     |     |     |     |     |");
+                Console.WriteLine($"|     |     |     |     |     |{i + 1}");
                 for (int j = 0; j < cols; j++)
                 {
                     // CellState and CellColor

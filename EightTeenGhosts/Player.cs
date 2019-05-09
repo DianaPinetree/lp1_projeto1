@@ -26,7 +26,7 @@ namespace EightTeenGhosts
         /// </value>
         public List<Cell> PlayerGhosts { get; set; }
 
-        public List<Cell> Dungeon { get; private set; }
+        public List<Cell> Dungeon { get; set; }
 
         // Property for the ghosts that have left the castle, player 1 and 2
         /// <value> 
