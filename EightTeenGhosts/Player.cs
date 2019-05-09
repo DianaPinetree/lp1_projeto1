@@ -144,7 +144,7 @@ namespace EightTeenGhosts
             }
             else
             {
-                Console.WriteLine("Pick a valid colour or " +
+                Console.WriteLine("Pick a valid color or " +
                     "one that still has ghosts for you to place.");
                 return PickColor();
             }
@@ -185,7 +185,6 @@ namespace EightTeenGhosts
             Position ghostPosition;
             int inputIndex;
             int cellIndex;
-
             // Get a number between 1 and 9 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
 
@@ -193,42 +192,23 @@ namespace EightTeenGhosts
             inputIndex = Math.Clamp(inputIndex, 1, 9);
             cellIndex = 1;
 
-            ghostPosition = new Position();
             // get the corresponding position
             for (int i = 0; i < board.boardState.GetLength(0); i++)
             {
                 for (int j = 0; j < board.boardState.GetLength(1); j++)
                 {
-                   /*foreach (Cell ghost in PlayerGhosts)
-                    {
-                        if (ghost.Position.x == i 
-                            && ghost.Position.y == j)
-                        {
-                            ghostPosition = ghost.Position;
-                            break;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    if (ghostPosition != null)
-                    {
-                    if (board.boardState[i, j].)
-                        cellIndex++;
-                        if (cellIndex == inputIndex)
-                        {
-                            // Create a new position with the x,y coordinates
-                            ghostPosition = new Position(i, j);
-                            return ghostPosition;
-                        }
-                    }*/
-
-                foreach (Cell ghost in PlayerGhosts)
+                    foreach (Cell ghost in PlayerGhosts)
                     {
                         if (ghost.Position.x == j
-                            && ghost.Position.y == i) return ghost.Position;
-                        else cellIndex++;
+                            && ghost.Position.y == i)
+                        {
+                            cellIndex++;
+                            if (cellIndex == inputIndex)
+                            {
+                                ghostPosition = new Position(i, j);
+                                return ghostPosition;
+                            }
+                        }
                     }
                 }
             }
@@ -287,30 +267,46 @@ namespace EightTeenGhosts
             return null;
         }
 
-        public Position MoveGhost(Position ghostPos)
+        public void MoveGhost(Position ghostPos)
         {
             string moveInput;
+            int index;
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
+
+            index = 0;
+            foreach (Cell ghost in PlayerGhosts)
+            {
+                if (ghost.Position == ghostPos)
+                {
+                    PlayerGhosts[index].Position = ghostPos;
+                    break;
+                }
+                index++;
+            }
+
             switch (moveInput)
             {
                 case ("w"):
-                    if (ghostPos.x > 0) ghostPos.x--;
+                    if (PlayerGhosts[index].Position.y > 0)
+                        PlayerGhosts[index].Position.y--;
                     break;
                 case ("a"):
-                    if (ghostPos.y > 0) ghostPos.y--;
+                    if (PlayerGhosts[index].Position.x > 0)
+                        PlayerGhosts[index].Position.x--;
                     break;
                 case ("s"):
-                    if (ghostPos.x < 5) ghostPos.x++;
+                    if (PlayerGhosts[index].Position.y < 5)
+                        PlayerGhosts[index].Position.y++;
                     break;
                 case ("d"):
-                    if (ghostPos.y < 5) ghostPos.y++;
+                    if (PlayerGhosts[index].Position.x < 5)
+                        PlayerGhosts[index].Position.x++;
                     break;
                 default:
                     break;
             }
-            return ghostPos;
         }
 
     }
