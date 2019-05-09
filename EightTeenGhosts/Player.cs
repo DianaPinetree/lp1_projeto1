@@ -315,8 +315,10 @@ namespace EightTeenGhosts
         private void GhostCombat(Player player1, Player player2)
         {
             Position ghost1Pos, ghost2Pos;
+
             ghost1Pos = new Position();
             ghost2Pos = new Position();
+
             foreach (Cell ghost1 in player1.PlayerGhosts)
             {
                 
