@@ -21,7 +21,7 @@ namespace EightTeenGhosts
             int cols = board.boardState.GetLength(1);
 
             // Print out the top of the board
-            Console.WriteLine(" _____________________________");
+            Console.WriteLine(" __1_____2_____3_____4_____5__");
 
             // For loop to print the inside
             for (int i = 0; i < rows; i++)
@@ -114,6 +114,8 @@ namespace EightTeenGhosts
 
         public static void DrawDungeon(Player currentPlayer)
         {
+            int ghostCounter;
+            char ghostChar;
             // Informative line
             Console.WriteLine("Ghosts in player's Dungeon: ");
             // Top line
@@ -123,10 +125,15 @@ namespace EightTeenGhosts
             for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
                 Console.Write("|     |");
             Console.WriteLine();
+
             // Print lines with ghosts
+            ghostCounter = 1;
+            ghostChar = ' ';
             foreach (Cell ghost in currentPlayer.Dungeon)
             {
-                PrintCell(ghost.Color, 4, 'G');
+                ghostChar = (char)(ghostCounter + 48);
+                PrintCell(ghost.Color, 4, ghostChar);
+                ghostCounter++;
             }
             for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
                 Console.Write("|_____|");

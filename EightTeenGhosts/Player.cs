@@ -34,7 +34,7 @@ namespace EightTeenGhosts
         /// the git repository, ghosts that count for the win state.<br>
         /// Can only be changed from inside the Board class.
         /// </value>
-        public List<Cell> ghostsOutside { get; private set; }
+        public List<Cell> GhostsOutside { get; private set; }
 
         // Constructor that receives a player name
         /// <summary>
@@ -52,52 +52,7 @@ namespace EightTeenGhosts
         {
             PlayerGhosts = new List<Cell>();
             Dungeon = new List<Cell>();
-            ghostsOutside = new List<Cell>();
-        }
-
-        /// <summary>
-        /// Inserts a new ghost to the player's ghost array
-        /// </summary>
-        /// <param name="position"> 
-        /// Position in the gameBoard of the ghost
-        /// </param>
-        /// <param name="color">
-        /// Color of the ghost
-        /// </param>
-        public void AppendGhost(Position position, CellColor color)
-        {
-            // Type that will be added to the array of ghosts
-            CellType type = CellType.Ghost;
-
-            for (int i = 0; i < PlayerGhosts.Count; i++)
-            {
-                if (PlayerGhosts[i] == null)
-                {
-                    PlayerGhosts[i] = new Cell(type, color, position);
-                    break;
-                }
-            }
-        }
-
-        public void RemoveGhost(Position position, string placeArrayName)
-        {
-            int index;
-            index = 0;
-            for (int i = 0; i < PlayerGhosts.Count; i++)
-            {
-                if (PlayerGhosts[i].Position == position)
-                    index = i;
-            }
-            if (placeArrayName == "Dungeon")
-            {
-                Dungeon[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 6;
-            }
-            else if (placeArrayName == "Outside")
-            {
-                ghostsOutside[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 7;
-            }
+            GhostsOutside = new List<Cell>();
         }
 
         /// <summary>
@@ -145,47 +100,51 @@ namespace EightTeenGhosts
             }
         }
 
-        public int PickAction()
+        public int PickAction(int limit = 9)
         {
             int action;
 
             action = Convert.ToInt32(Console.ReadLine());
-            return action;
+            if (action <= limit)
+                return action;
+            else
+                return PickAction();
         }
 
-
-
-        public Position GetPosition(Board board)
+        public void GhostPushOut(Cell ghost)
         {
-            // Return position, player input number and cell number vars
-            Position ghostPosition;
-            int inputIndex;
-            int cellIndex;
+            GhostsOutside.Add(ghost);
+            PlayerGhosts.Remove(ghost);
+        }
 
-            // Get a number between 1 and 9 from the player
-            inputIndex = Convert.ToInt32(Console.ReadLine());
+        public Cell RessurectGhost()
+        {
+            int ghostToRessurect;
+            Cell ghost;
 
-            // Force it to be between 1 and 9
-            inputIndex = Math.Clamp(inputIndex, 1, 9);
-            cellIndex = 1;
+            Console.WriteLine("Pick a ghost from the Dungeon " +
+                "(select it's number): ");
 
-            ghostPosition = new Position();
-            // get the corresponding position
-            for (int i = 0; i < board.boardState.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.boardState.GetLength(1); j++)
-                {
-                    foreach (Cell ghost in PlayerGhosts)
-                    {
-                        if (ghost.Position.x == i
-                            && ghost.Position.y == j) return ghost.Position;
-                        else if (ghost.Position == null) cellIndex++;
-                        else continue;
-                    }
-                }
-            }
+            ghostToRessurect = PickAction(Dungeon.Count);
+            ghost = Dungeon[ghostToRessurect];
 
-            return null;
+            PlayerGhosts.Add(Dungeon[ghostToRessurect]);
+            Dungeon.Remove(Dungeon[ghostToRessurect]);
+
+            return ghost;
+        }
+
+        public void PlaceGhost(Cell ghost)
+        {
+            Position newPos;
+            // x,y position of type Position
+            newPos = GetPosition();
+            
+            // Change ghost to that position
+            ghost.Position = newPos;
+
+            // Add new ghost to playerGhosts array
+            PlayerGhosts.Add(ghost);
         }
 
         /// <summary>
