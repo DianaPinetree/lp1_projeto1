@@ -226,9 +226,8 @@ namespace EightTeenGhosts
 
                 foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == j
-                            && ghost.Position.y == i) return ghost.Position;
-                        else cellIndex++;
+                        if (ghost.Position.x == i
+                            && ghost.Position.y == j) return ghost.Position;
                     }
                 }
             }
@@ -287,31 +286,80 @@ namespace EightTeenGhosts
             return null;
         }
 
-        public Position MoveGhost(Position ghostPos)
+        public Position MoveGhost(Position ghostPos, Board board)
         {
             string moveInput;
+            Position destination = new Position();
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
             switch (moveInput)
             {
                 case ("w"):
-                    if (ghostPos.x > 0) ghostPos.x--;
+                    destination.x = ghostPos.x--;
                     break;
                 case ("a"):
-                    if (ghostPos.y > 0) ghostPos.y--;
+                    destination.y =  ghostPos.y--;
                     break;
                 case ("s"):
-                    if (ghostPos.x < 5) ghostPos.x++;
+                    destination.x = ghostPos.x++;
                     break;
                 case ("d"):
-                    if (ghostPos.y < 5) ghostPos.y++;
+                    destination.y = ghostPos.y++;
                     break;
                 default:
                     break;
             }
-            return ghostPos;
+            destination = MirrorInteractionCheck(destination, board);
+            return destination;
         }
 
+        public Position MirrorInteractionCheck(Position destination, Board board)
+        {
+            Position m1 = board.boardState[1, 1].Position;
+            Position m2 = board.boardState[1, 3].Position;
+            Position m3 = board.boardState[3, 1].Position;
+            Position m4 = board.boardState[3, 3].Position;
+
+            if (destination == m1) destination = MirrorChoice(m1, m2, m3, m4);
+            else if (destination == m2) destination = MirrorChoice(m2, m1, 
+                m3, m4);
+            else if (destination == m3) destination = MirrorChoice(m3, m1, 
+                m2, m4);
+            else if (destination == m1) destination = MirrorChoice(m4, m1, 
+                m2, m3);
+
+            return destination;
+        }
+
+        private Position MirrorChoice(Position mirrorEntered, Position mirror1,
+            Position mirror2, Position mirror3)
+        {
+            int choiceInput;
+            Position newDestination = new Position();
+
+            Console.WriteLine($"Choose the position of the Mirror room you" +
+                $"to move to:\n(1 - ({mirror1.y}, {mirror1.x}); 2 - " +
+                $"({mirror2.y}, {mirror2.x}); 3 - ({mirror3.y}, {mirror3.x})");
+
+            choiceInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (choiceInput)
+            {
+                case (1):
+                    newDestination.x = mirror1.x;
+                    newDestination.y = mirror1.y;
+                    break;
+                case (2):
+                    newDestination.x = mirror2.x;
+                    newDestination.y = mirror2.y;
+                    break;
+                case (3):
+                    newDestination.x = mirror3.x;
+                    newDestination.y = mirror3.y;
+                    break;
+            }
+            return newDestination;
+        }
     }
 }
