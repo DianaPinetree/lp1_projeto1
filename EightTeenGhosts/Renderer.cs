@@ -14,7 +14,7 @@ namespace EightTeenGhosts
         /// </summary>
         /// <param name="board"></param>
         static public void DrawBoard(Board board,
-            Cell[] p1Ghosts, Cell[] p2Ghosts, Portal[] portals)
+            List<Cell> p1Ghosts, List<Cell> p2Ghosts, Portal[] portals)
         {
             // Get the rows and cols of the board
             int rows = board.boardState.GetLength(0);
@@ -39,7 +39,6 @@ namespace EightTeenGhosts
                     Cell ghostCell;
                     Portal portalCell;
                     char playerChar;
-                    char portalChar;
 
                     // Get the color and the type of the current cell
                     color = board.boardState[i, j].Color;
@@ -118,10 +117,10 @@ namespace EightTeenGhosts
             // Informative line
             Console.WriteLine("Ghosts in player's Dungeon: ");
             // Top line
-            for (int i = 0; i < currentPlayer.Dungeon.Length; i++)
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
                 Console.Write("_______");
             Console.WriteLine();
-            for (int i = 0; i < currentPlayer.Dungeon.Length; i++)
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
                 Console.Write("|     |");
             Console.WriteLine();
             // Print lines with ghosts
@@ -129,8 +128,7 @@ namespace EightTeenGhosts
             {
                 PrintCell(ghost.Color, 4, 'G');
             }
-            Console.WriteLine("|");
-            for (int i = 0; i < currentPlayer.Dungeon.Length; i++)
+            for (int i = 0; i < currentPlayer.Dungeon.Count; i++)
                 Console.Write("|_____|");
             Console.WriteLine();
         }
