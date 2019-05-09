@@ -1,14 +1,14 @@
-﻿## Relatório do Trabalho
-# 1º Projeto de Linguagens de Programação I - 18Ghosts
+﻿# Relatório do Trabalho
+## 1º Projeto de Linguagens de Programação I - 18Ghosts
 
 **Trabalho realizado por:**
 - [Afonso Rosa, a21802169](https://github.com/AfonsoGR)
 - [Pedro Inácio, a21802050](https://github.com/PmaiWoW)
 - [Rodrigo Pinheiro, a21802488](https://github.com/RodrigoPrinheiro)
 
-#### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
+### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
 
-### Distribuição e Realização do Projeto:
+#### Distribuição e Realização do Projeto:
 
 - Afonso Rosa:
     
@@ -27,7 +27,8 @@
 	- Geriu a lógica do `GameLoop` na classe `Game`.
 
 
-### Arquitetura do Programa:
+#### Arquitetura do Programa:
+
 - O programa está baseado em 2 enumerações principais `CellType` e `CellColor` e uma classe de posição `Position`, estas são depois usadas para constituir as unidades básicas do jogo, `Cell`, `Portal`. Achámos necessário separar entre `Cell` e `Portal` porque as saídas tinham a peculiaridade de rodarem a sua entrada.
 - Para o jogo funcionar em lógica, foi repartido em elementos, `Board`, `Player` e `WinChecker`.
 - Assim o tabuleiro de jogo é uma array bidimensional de objetos `Cell`.
@@ -37,10 +38,10 @@
 - A classe `Player` contem todas os métodos relacionados com _input_ e movimentos de fantasmas.
 - A classe `Renderer` serve para desenhar o estado do jogo, e células de cores específicas.
 
-#### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
+##### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
 ![DiagramaUML](diagramaUml.png)
 
-#### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
+##### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
 ![Fluxograma](fluxograma.png)
 
 ### Conclusões e Matéria Aprendida:
