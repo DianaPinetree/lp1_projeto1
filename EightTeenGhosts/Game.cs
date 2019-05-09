@@ -140,7 +140,6 @@ namespace EightTeenGhosts
                                 GetPosition(gameBoard);
                             Console.WriteLine($"{pos.y}, {pos.x}");
                             currentPlayer.MoveGhost(pos, gameBoard);
-
                             break;
                         }
                     case 2:
