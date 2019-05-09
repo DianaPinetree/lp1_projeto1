@@ -158,33 +158,29 @@ namespace EightTeenGhosts
         public Position GetPosition(Board board)
         {
             // Return position, player input number and cell number vars
-            Position ghostPosition;
             int inputIndex;
-            int cellIndex;
 
             // Get a number between 1 and 9 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
 
             // Force it to be between 1 and 9
             inputIndex = Math.Clamp(inputIndex, 1, 9);
-            cellIndex = 1;
-
-            ghostPosition = new Position();
+            int cellIndex = 0;
             // get the corresponding position
-            for (int i = 0; i < board.boardState.GetLength(0); i++)
+            for (int i = 0; i < board.boardState.GetLength(1); i++)
             {
-                for (int j = 0; j < board.boardState.GetLength(1); j++)
+                for (int j = 0; j < board.boardState.GetLength(0); j++)
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == i
-                            && ghost.Position.y == j) return ghost.Position;
-                        else if (ghost.Position == null) cellIndex++;
-                        else continue;
+                        if (ghost.Position.x == i && ghost.Position.y == j)
+                            cellIndex++;
+
+                        if (cellIndex == inputIndex)
+                            return new Position(i, j);
                     }
                 }
             }
-
             return null;
         }
 
@@ -246,8 +242,9 @@ namespace EightTeenGhosts
             int indexInArray;
 
             indexInArray = PlayerGhosts.IndexOf
-                (PlayerGhosts.Find(x => x.Position == position));
-            
+                (PlayerGhosts.Find(x => x.Position.x == position.x && x.Position.y == position.y));
+
+           
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
