@@ -101,7 +101,7 @@ namespace EightTeenGhosts
             else if (placeArrayName == "Outside")
             {
                 ghostsOutside[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 6;
+                PlayerGhosts[index].Position.x = 7;
             }
         }
 
@@ -164,6 +164,12 @@ namespace EightTeenGhosts
             return action;
         }
 
+        /// <summary>
+        /// Turns a position into a ghost index of the 
+        /// players playerGhosts array
+        /// </summary>
+        /// <param name="position"> Position of the ghost in the board</param>
+        /// <returns></returns>
         public int PositionToGhost(Position position)
         {
             int counter;
