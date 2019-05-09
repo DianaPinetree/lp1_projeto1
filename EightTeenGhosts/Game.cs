@@ -138,7 +138,6 @@ namespace EightTeenGhosts
                             Position pos = currentPlayer.
                                 GetPosition(gameBoard);
                             currentPlayer.MoveGhost(pos, gameBoard);
-
                             break;
                         }
                     case 2:
