@@ -1,4 +1,4 @@
-﻿\mainpage
+﻿<!--\mainpage-->
 ## Relatório do trabalho
 # **1º Projeto de Linguagens de Programação I - 18Ghosts**
 
@@ -13,28 +13,13 @@
 
 - Afonso Rosa:
     
-    - Class Text:
-
-		- Métodos e texto que compõe o corpo da class
+    - Class Text Métodos e texto que compõe o corpo da class
 - Pedro Inácio:
 
     - PLACEHOLDER
 - Rodrigo Pinheiro:
 
-    - Class Board:
-	- Class Cell:
-	- Class CellColor:
-	- Class CellType:
-	- Class Game:
-	- Class Player:
-	- Class Portal:
-	- Class Position:
-	- Class Program:
-	- Class Renderer:
-	- Class Text:
-	
-		- Comentários
-	- Class WinChecker:
+    - Class BoardClass Cell:Class CellColor:Class CellType:Class Game: Class Player:Class Portal:Class Position:Class Program:lass Renderer:Class Text:Comentários Class WinChecker:
 
 
 
