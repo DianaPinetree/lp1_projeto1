@@ -203,14 +203,13 @@ namespace EightTeenGhosts
             // Return position, player input number and cell number vars
             Position cellPosition;
             int inputIndex;
-            int cellIndex;
+            int cellIndex = 1;
 
             // Get a number between 1 and 6 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
 
             // Force it to be between 1 and 6
             inputIndex = Math.Clamp(inputIndex, 1, 6);
-            cellIndex = 1;
 
             // get the corresponding position
             for (int i = 0; i < board.boardState.GetLength(0); i++)
