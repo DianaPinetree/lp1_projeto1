@@ -159,7 +159,8 @@ namespace EightTeenGhosts
         private void StartGame()
         {
             turns = 0;
-            gameText.StartupText();
+            Text.StartupText();
+            Text.GetHelp();
             Continue();
 
             // Place the first ghost, first player

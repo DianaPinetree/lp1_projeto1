@@ -120,32 +120,26 @@ namespace EightTeenGhosts
                 "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
 
-            //Checks if the player can put more ghosts of a certain color
-            //ColorCheck();
-
             // Compare and return the corresponding color
             if (playerColor == 1 && rNum < 3)
             {
                 color = CellColor.Red;
                 rNum++;
-                // Debug of above
-                Console.WriteLine(rNum);
+                Console.WriteLine("Red Ghosts placed: {0}", rNum);
                 return color;
             }
             else if (playerColor == 2 && bNum < 3)
             {
                 color = CellColor.Blue;
                 bNum++;
-                // Debug of above
-                Console.WriteLine(bNum);
+                Console.WriteLine("Blue Ghosts placed: {0}", bNum);
                 return color;
             }
             else if (playerColor == 3 && yNum < 3)
             {
                 color = CellColor.Yellow;
                 yNum++;
-                // Debug of above
-                Console.WriteLine(yNum);
+                Console.WriteLine("Yellow Ghosts placed: {0}", yNum);
                 return color;
             }
             else
