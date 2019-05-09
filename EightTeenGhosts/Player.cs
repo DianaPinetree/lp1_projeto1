@@ -120,9 +120,6 @@ namespace EightTeenGhosts
                 "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
 
-            //Checks if the player can put more ghosts of a certain color
-            //ColorCheck();
-
             // Compare and return the corresponding color
             if (playerColor == 1 && rNum < 3)
             {
