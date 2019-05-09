@@ -1,6 +1,5 @@
-﻿<!--\mainpage-->
-## Relatório do trabalho
-# **1º Projeto de Linguagens de Programação I - 18Ghosts**
+﻿## Relatório do trabalho
+# 1º Projeto de Linguagens de Programação I - 18Ghosts
 
 **Trabalho realizado por:**
 - [Afonso Rosa, a21802169](https://github.com/AfonsoGR)
@@ -20,7 +19,7 @@
 - Rodrigo Pinheiro:
     - Iniciou a solução do projeto e iteração da mesma. Tambem criou as classes iniciais usadas no projeto.
 	- Desenvolveu as classes ao longo do projeto e modificou-as quando necessário.
-	- Gerio a lógica do _Game Loop_ na classe _Game_.
+	- Geriu a lógica do _Game Loop_ na classe _Game_.
 
 
 ### Arquitetura do Programa:
@@ -48,3 +47,6 @@ para verificação.
 ### Referências:
 1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
 2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantasmas;
+3. Foi usado o [API](https://docs.microsoft.com/en-us/dotnet/api/) do .NET em geral para dúvidas em relação a consola, arrays, e outros elementos do cs.
+4. Em específico esta foi a [página](https://docs.microsoft.com/en-us/dotnet/api/system.windows.documents.list?view=netframework-4.8) mais visitada da API
+5. Houve uma troca de ideias com o colega Tomás Franco ao logo da realização do projeto de como cada um estava a implementar as soluções.
