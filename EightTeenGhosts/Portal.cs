@@ -21,7 +21,7 @@ namespace EightTeenGhosts
         private static string[] openSides;
 
         /// <value>
-        /// Contains the current open side of the portal
+        /// Contains the current open side of the portal and sets the sideChar
         /// </value>>
         public string OpenSide
         {
@@ -63,11 +63,21 @@ namespace EightTeenGhosts
             OpenSide = GetNextSide(openSides, index);
         }
 
+        /// <summary>
+        /// Simple get for the current char representing portal
+        /// </summary>
+        /// <returns></returns>
         public char GetSideChar()
         {
             return portalChar;
         }
 
+        /// <summary>
+        /// Switches the char representing the side
+        /// </summary>
+        /// <param name="side">
+        /// String that tells the side of the portal that's open
+        /// </param>
         private void SetSideChar(string side)
         {
             switch (side)

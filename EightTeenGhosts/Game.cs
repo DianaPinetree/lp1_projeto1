@@ -245,6 +245,12 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Checks for the portal exits and neighbor ghosts
+        /// </summary>
+        /// <param name="player">
+        /// Player to check the neighbor exists
+        /// </param>
         private void CheckForPortalsExit(Player player)
         {
             foreach (Portal exit in portals)
@@ -263,6 +269,16 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Uses a reference to the 2 players to make combat in overlapping
+        /// ghosts
+        /// </summary>
+        /// <param name="player1">
+        /// Player object with the player 1 reference
+        /// </param>
+        /// <param name="player2">
+        /// Player object with the player 1 reference
+        /// </param>
         private void GhostCombat(Player player1, Player player2)
         {
             Cell ghostp1, ghostp2, ghostWin;
@@ -295,8 +311,28 @@ namespace EightTeenGhosts
             {
                 player1.PlayerGhosts.Remove(ghostp1);
             }
+
+            foreach (Portal portal in portals)
+            {
+                if (portal.Color == ghostWin.Color)
+                {
+                    portal.SwitchSide();
+                }
+            }
         }
 
+        /// <summary>
+        /// Fight check that returns the winning Cell between 2 Ghosts;
+        /// </summary>
+        /// <param name="ghost1">
+        /// Ghost from player 1
+        /// </param>
+        /// <param name="ghost2">
+        /// Ghost from player 2
+        /// </param>
+        /// <returns>
+        /// Returns the winning ghost
+        /// </returns>
         private Cell Fight(Cell ghost1, Cell ghost2)
         {
             CellColor ghostWinColor;

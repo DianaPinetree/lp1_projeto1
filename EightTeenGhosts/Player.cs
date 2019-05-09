@@ -100,6 +100,15 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Picks an action from the player converting it into an int
+        /// </summary>
+        /// <param name="limit">
+        /// limit of the number the player can give
+        /// </param>
+        /// <returns>
+        /// Returns the action or if it passes the limit asks again
+        /// </returns>
         public int PickAction(int limit = 9)
         {
             int action;
@@ -111,12 +120,24 @@ namespace EightTeenGhosts
                 return PickAction();
         }
 
+        /// <summary>
+        /// Pushes a ghost outside the castle
+        /// </summary>
+        /// <param name="ghost">
+        /// Ghost that will be taken out the castle
+        /// </param>
         public void GhostPushOut(Cell ghost)
         {
             GhostsOutside.Add(ghost);
             PlayerGhosts.Remove(ghost);
         }
 
+        /// <summary>
+        /// Resurrects a ghost that is currently in the dungeon
+        /// </summary>
+        /// <returns>
+        /// Returns the ghost that is being revived
+        /// </returns>
         public Cell RessurectGhost()
         {
             int ghostToRessurect;
@@ -134,6 +155,15 @@ namespace EightTeenGhosts
             return ghost;
         }
 
+        /// <summary>
+        /// Places a newly revived ghost 
+        /// </summary>
+        /// <param name="ghost">
+        /// Ghost to be placed
+        /// </param>
+        /// <param name="board">
+        /// Game board
+        /// </param>
         public void PlaceGhost(Cell ghost, Board board)
         {
             Position newPos;
@@ -147,6 +177,12 @@ namespace EightTeenGhosts
             PlayerGhosts.Add(ghost);
         }
 
+        /// <summary>
+        /// Gets an x,y position from the player
+        /// </summary>
+        /// <returns>
+        /// Returns the given position
+        /// </returns>
         public Position GetPosition()
         {
             int x;
@@ -243,6 +279,15 @@ namespace EightTeenGhosts
             return null;
         }
 
+        /// <summary>
+        /// Moves picked ghost by one to the given input
+        /// </summary>
+        /// <param name="position">
+        /// Initial position of the ghost
+        /// </param>
+        /// <param name="board">
+        /// Game board
+        /// </param>
         public void MoveGhost(Position position, Board board)
         {
             string moveInput;
@@ -281,6 +326,15 @@ namespace EightTeenGhosts
             MirrorInteractionCheck(PlayerGhosts[indexInArray], board);
         }
 
+        /// <summary>
+        /// Called when the ghost in MoveGhost() method is on a mirror
+        /// </summary>
+        /// <param name="cell">
+        /// Ghost to be moved
+        /// </param>
+        /// <param name="board">
+        /// Game board
+        /// </param>
         public void MirrorInteractionCheck(Cell cell, Board board)
         {
             Position m1 = board.boardState[1, 1].Position;
@@ -298,6 +352,17 @@ namespace EightTeenGhosts
                 cell.Position = MirrorChoice(m4, m1, m2, m3);
         }
 
+        /// <summary>
+        /// Translates player input to a mirror position to be used in the
+        /// mirror interaction method
+        /// </summary>
+        /// <param name="mirrorEntered">
+        /// Mirror entered by the ghost
+        /// </param>
+        /// <param name="mirror1"></param>
+        /// <param name="mirror2"></param>
+        /// <param name="mirror3"></param>
+        /// <returns></returns>
         private Position MirrorChoice(Position mirrorEntered, Position mirror1,
             Position mirror2, Position mirror3)
         {
@@ -326,23 +391,6 @@ namespace EightTeenGhosts
                     break;
             }
             return newDestination;
-        }
-
-        private void GhostCombat(Player player1, Player player2)
-        {
-            Position ghost1Pos, ghost2Pos;
-
-            ghost1Pos = new Position();
-            ghost2Pos = new Position();
-
-            foreach (Cell ghost1 in player1.PlayerGhosts)
-            {
-                
-                foreach (Cell ghost2 in player2.PlayerGhosts)
-                {
-
-                }
-            }
         }
     }
 }
