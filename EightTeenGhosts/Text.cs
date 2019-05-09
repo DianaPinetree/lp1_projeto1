@@ -21,7 +21,7 @@ namespace EightTeenGhosts
         {
             // Small lore intro/Startup text
             Console.WriteLine("During the past 11 years " +
-                "a group of ghosts the  has been forsaken " +
+                "a group of ghosts has been forsaken " +
                 "inside a small Git repository " +
                 "that no longer gets updated...\n" +
                 "The poor ghosts are lost " +
