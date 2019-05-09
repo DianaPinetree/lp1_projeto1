@@ -104,11 +104,11 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Creates a neighbour position of a portal instance from the
+        /// Creates a neighbor position of a portal instance from the
         /// current open side
         /// </summary>
         /// <returns>
-        /// Returns the x,y coordinate of the created neighbour
+        /// Returns the x,y coordinate of the created neighbor
         /// </returns>
         private Position Neighbours()
         {
@@ -130,33 +130,27 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Checks for any ghosts in the neighbour cell
+        /// Checks for any ghosts in the neighbor cell
         /// </summary>
         /// <param name="p1Ghosts"> Ghost array for player 1</param>
         /// <param name="p2Ghosts"> Ghost array for player 2</param>
         /// <returns>
-        /// Returns the position of the neighbour ghost facing the portal
+        /// Returns the position of the neighbor ghost facing the portal
         /// </returns>
-        public Position GhostEnter(Cell[] p1Ghosts, Cell[] p2Ghosts)
+        public Cell GhostEnter(List<Cell> playerGhosts)
         {
-            Position ghostPos;
-            ghostPos = new Position();
-
+            Cell ghostToExit;
+            ghostToExit = new Cell(CellType.Ghost);
             // Check for player's 1 ghosts
-            foreach (Cell ghost in p1Ghosts)
+            foreach (Cell ghost in playerGhosts)
             {
                 if (ghost.Position == Neighbours())
-                    ghostPos = ghost.Position;
+                {
+                    ghostToExit = ghost;
+                    return ghost;
+                }
             }
-
-            // Check for player's 2 ghosts
-            foreach (Cell ghost in p2Ghosts)
-            {
-                if (ghost.Position == Neighbours())
-                    ghostPos = ghost.Position;
-            }
-
-            return ghostPos;
+            return null;
         }
     }
 }
