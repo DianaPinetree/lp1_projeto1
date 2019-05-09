@@ -35,21 +35,24 @@
 - Assim o tabuleiro de jogo é uma array bidimensional de objetos `Cell`.
 - Os jogadores, cada um, tem uma lista dos seus fantasmas em campo, masmorras e fora do castelo.
 - A classe de verificação `WinChecker` é a base de uma variavel `CellColor` com todas as cores combinadas para verificação.
-
 - A classe `Player` contem todas os métodos relacionados com _input_ e movimentos de fantasmas.
 - A classe `Renderer` serve para desenhar o estado do jogo, e células de cores específicas.
 
-##### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
+#### [Diagrama UML](https://drive.google.com/file/d/1iydRDRKKwkLcJhz3KOTjGKMDG71ldKUa/view?usp=sharing)
 
 ![DiagramaUML](diagramaUml.png)
 
-##### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
+#### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
 ![Fluxograma](fluxograma.png)
 
-### Conclusões e Matéria Aprendida:
+#### Conclusões e Matéria Aprendida:
+Neste trabalho notamos o quão dificil é converter um jogo de tabuleiro para uma versão em código.<br/>
+Notou-se também que implementar todas as mecânicas do jogo de tabuleiro é extramamente complicado havendo várias que entram em conflicto constantemente e que para as gerir devidamente é necessário extremo cuidado e atenção.<br/>
+Durante a realização do projeto ficou-se mais proficiente na utilização de código adequado ao dilema atual e ao mesmo tempo melhorou-se o raciocínio e a percepção dos indíviduos em relação para com o código e a sua utilização e estruturação, levando a um melhor manejamento do mesmo e das diversas formas de como pode ser utilizado para se obter os resultados prentedidos.<br/>
+Ficou-se mais apto à utilização de código complexo devido especialmente ao fato de se ter de gerir um grande número de classes com um grande número de métodos, enumeradores, _arrays_, e propriedades (_getters_ e _setters_).<br/>
+Nota-se também que este projeto era complicado para os mal preparados e que para a realização satisfatória do projeto era necessário vários dias de preparação e se não lhe fosse prestada suficiente atenção e detalhe a realização do mesmo era impossível.
 
-
-### Referências:
+#### Referências:
 1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
 2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantasmas;
 3. Foi usado o [API](https://docs.microsoft.com/en-us/dotnet/api/) do .NET em geral para dúvidas em relação a consola, arrays, e outros elementos do cs.
