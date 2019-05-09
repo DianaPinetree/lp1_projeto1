@@ -56,51 +56,6 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
-        /// Inserts a new ghost to the player's ghost array
-        /// </summary>
-        /// <param name="position"> 
-        /// Position in the gameBoard of the ghost
-        /// </param>
-        /// <param name="color">
-        /// Color of the ghost
-        /// </param>
-        public void AppendGhost(Position position, CellColor color)
-        {
-            // Type that will be added to the array of ghosts
-            CellType type = CellType.Ghost;
-
-            for (int i = 0; i < PlayerGhosts.Count; i++)
-            {
-                if (PlayerGhosts[i] == null)
-                {
-                    PlayerGhosts[i] = new Cell(type, color, position);
-                    break;
-                }
-            }
-        }
-
-        public void RemoveGhost(Position position, string placeArrayName)
-        {
-            int index;
-            index = 0;
-            for (int i = 0; i < PlayerGhosts.Count; i++)
-            {
-                if (PlayerGhosts[i].Position == position)
-                    index = i;
-            }
-            if (placeArrayName == "Dungeon")
-            {
-                Dungeon[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 6;
-            }
-            else if (placeArrayName == "Outside")
-            {
-                ghostsOutside[index] = PlayerGhosts[index];
-                PlayerGhosts[index].Position.x = 7;
-            }
-        }
-
-        /// <summary>
         /// Class to get a color from player input
         /// </summary>
         /// <returns> Returns a Color of type CellColor</returns>
