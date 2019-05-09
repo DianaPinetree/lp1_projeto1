@@ -133,7 +133,10 @@ namespace EightTeenGhosts
                     case 1:
                         {
                             // Move a ghost
-                            Renderer.EnumeratePlayerGhosts(currentPlayer, gameBoard);
+                            Renderer.EnumeratePlayerGhosts(currentPlayer, 
+                                gameBoard);
+                            currentPlayer.MoveGhost(currentPlayer.GetPosition
+                                (gameBoard), gameBoard); ;
                             break;
                         }
                     case 2:
