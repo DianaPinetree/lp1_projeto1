@@ -12,7 +12,8 @@
 
 - Afonso Rosa:
     
-    - Construção da classe `Text` e estruturação da mesma, adição das restrições no método `PickColor` da classe `Player` que impedem o jogadores de ter mais de 3 fantasmas de uma cor e que os proíbem de colocar fantasmas de uma cor após já não haver mais para meter. Aprofundamento substancial do ficheiro `README.md`, sendo um dos responsáveis pelo [Markdown](https://guides.github.com/features/mastering-markdown/) e pela estruturação e organização do mesmo, e diversas alterações e realização do `Fluxograma`.
+    - Construção da classe `Text` e estruturação da mesma, adição das restrições no método `PickColor` da classe `Player` que impedem o jogadores de ter mais de 3 fantasmas de uma cor e que os proíbem de colocar fantasmas de uma cor após já não haver mais para meter. 
+    - Aprofundamento substancial do ficheiro `README.md`, sendo um dos responsáveis pelo [Markdown](https://guides.github.com/features/mastering-markdown/) e pela estruturação e organização do mesmo e realização do `Fluxograma`.
 - Pedro Inácio:
 
     - Construção dos métodos `MoveGhost`, `MirrorInterectionCheck` e `MirrorChoice` da class `Player` que tratam do movimento dos fantasmas no tabuleiro de jogo e realização do `Diagrama UML`.
