@@ -38,6 +38,15 @@ namespace EightTeenGhosts
                 return false;
         }
 
+        /// <summary>
+        /// Adds up the colors of a player's outside ghosts
+        /// </summary>
+        /// <param name="playerGhosts">
+        /// List of players ghosts outside the castle
+        /// </param>
+        /// <returns>
+        /// Returns the color combination
+        /// </returns>
         private CellColor CumulativeColor(List<Cell> playerGhosts)
         {
             CellColor color;
@@ -47,6 +56,16 @@ namespace EightTeenGhosts
             return color;
         }
 
+        /// <summary>
+        /// Checks between 2 colors which one it wins
+        /// </summary>
+        /// <param name="attacker">
+        /// Attacking color
+        /// </param>
+        /// <param name="defender">
+        /// Defending color
+        /// </param>
+        /// <returns></returns>
         public CellColor CombatCheck(CellColor attacker, CellColor defender)
         {
             switch (determineWinner(attacker, defender))
@@ -59,6 +78,18 @@ namespace EightTeenGhosts
             }
         }
 
+        /// <summary>
+        /// Determines the winner of a fight
+        /// </summary>
+        /// <param name="color1">
+        /// Color from the attacker
+        /// </param>
+        /// <param name="color2">
+        /// Color from the defender
+        /// </param>
+        /// <returns>
+        /// Returns true if color1 wins, false if otherwise
+        /// </returns>
         private bool determineWinner(CellColor color1, 
             CellColor color2)
         {
