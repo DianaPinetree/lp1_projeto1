@@ -10,9 +10,9 @@ namespace EightTeenGhosts
     class Player
     {
         // The number of ghosts a player has of a certain color
-        int rNum = 0;
-        int bNum = 0;
-        int yNum = 0;
+        private int rNum = 0;
+        private int bNum = 0;
+        private int yNum = 0;
 
         /// <value>
         /// Gets and Sets the name of the player of a Player instance.
@@ -115,8 +115,6 @@ namespace EightTeenGhosts
             CellColor color;
             int playerColor;
 
-            
-
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
                 "red: 1, blue: 2, yellow: 3");
@@ -166,6 +164,21 @@ namespace EightTeenGhosts
             return action;
         }
 
+        public int PositionToGhost(Position position)
+        {
+            int counter;
+            counter = 0;
+            foreach (Cell ghost in PlayerGhosts)
+            {
+                if (ghost.Position == position)
+                    return counter;
+                else
+                    counter++;
+            }
+
+            return 0;
+        }
+
         public Position GetPosition(Board board)
         {
             // Return position, player input number and cell number vars
@@ -188,8 +201,8 @@ namespace EightTeenGhosts
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == i && ghost.Position.y == j
-                            && cellIndex == inputIndex)
+                        if (ghost.Position.x == i 
+                            && ghost.Position.y == j)
                         {
                             ghostPosition = ghost.Position;
                             break;
@@ -201,14 +214,14 @@ namespace EightTeenGhosts
                     }
                     if (ghostPosition != null)
                     {
-                        // Create a new position with the x,y coordinates
-
-                        ghostPosition = new Position(i, j);
-                        return ghostPosition;
-
-                    }
-                    else
                         cellIndex++;
+                        if (cellIndex == inputIndex)
+                        {
+                            // Create a new position with the x,y coordinates
+                            ghostPosition = new Position(i, j);
+                            return ghostPosition;
+                        }
+                    }
                 }
             }
             return null;
