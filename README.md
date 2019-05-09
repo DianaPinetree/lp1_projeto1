@@ -1,35 +1,28 @@
 ﻿<!--\mainpage-->
-## Relatório do trabalho
-# **1º Projeto de Linguagens de Programação I - 18Ghosts**
+# Relatório do trabalho
+## **1º Projeto de Linguagens de Programação 1 - 18Ghosts**
 
 **Trabalho realizado por:**
+
 - [Afonso Rosa, a21802169](https://github.com/AfonsoGR)
 - [Pedro Inácio, a21802050](https://github.com/PmaiWoW)
 - [Rodrigo Pinheiro, a21802488](https://github.com/RodrigoPrinheiro)
 
-#### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
+### [Repositório Git Utilizado](https://github.com/RodrigoPrinheiro/lp1_projeto1)
 
-### Realização do Projeto:
+#### Distribuição e Realização do Projeto:
 
 - Afonso Rosa:
     
-    - Class Text Métodos e texto que compõe o corpo da class
+    - Construção da classe `Text` e estruturação da mesma, adição das restrições no método `PickColor` da classe `Player` que impedem o jogadores de ter mais de 3 fantasmas de uma cor e que os proíbem de colocar fantasmas de uma cor após já não haver mais para meter. Aprofundamento substancial do ficheiro `README.md` e diversas alterações e realização do `Fluxograma`.
 - Pedro Inácio:
 
-    - PLACEHOLDER
+    - ... e realização do `Diagrama UML`.
 - Rodrigo Pinheiro:
 
-    - Class BoardClass Cell:Class CellColor:Class CellType:Class Game: Class Player:Class Portal:Class Position:Class Program:lass Renderer:Class Text:Comentários Class WinChecker:
+    - Construção e estruturação das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Player`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` e documentação adequada das mesmas. Realização das classes `x`, `x`, `etc` na sua **totalidade** e realização substancial/praticamente completa das classes `x`, `x`, `etc`. Correção da ortografia na classe `Text`. Realização da versão inicial do `README.md` e várias alterações, verificação do `Fluxograma`, realização do `Doxygen` e incorporação da imagem do `Fluxograma` em `git lfs`.
 
-
-
-
-
-
-
-
-
-### Arquitetura do Programa:
+#### Arquitetura do Programa:
 
 - Enumeração para os estados possíveis de 1 célula.
 
@@ -66,3 +59,7 @@
 ### Referências:
 1. Classe _Portal_ foi usada a resposta a [este](https://stackoverflow.com/questions/30258832/select-next-child-in-array-using-c-sharp) _post_ do stackOverflow, o uso da _keyword_ throw foi importante para _debugging_ do código correspondente;
 2. Solução do exercício 30 das bases de cs deste [repositório](https://github.com/VideojogosLusofona/lp1_exercicios) para os movimentos dos fantasmas;
+3. PDFs das aulas de Linguagens de Programação 1, em particular o da aula 08, que serviu para verificar a matéria relacionada a propriedades, diagramas UML e fluxogramas.
+4. Utilização da biblioteca online [.NET API](https://docs.microsoft.com/en-us/dotnet/api/) da Microsoft.
+5. Troca de ideias com o colega [Tomás Franco, a21803301](https://github.com/ThomasFranque), em particular de como executar o movimento e de como tratar dos portais, ainda tendo ajudado num problema de incrementação do método `PickColor` na classe `Player` e sugestão de mudar os métodos da classe `Text` para `static`.
+
