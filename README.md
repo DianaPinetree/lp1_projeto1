@@ -62,4 +62,5 @@
 3. PDFs das aulas de Linguagens de Programação 1, em particular o da aula 08, que serviu para verificar a matéria relacionada a propriedades, diagramas UML e fluxogramas.
 4. Utilização da biblioteca online [.NET API](https://docs.microsoft.com/en-us/dotnet/api/) da Microsoft.
 5. Troca de ideias com o colega [Tomás Franco, a21803301](https://github.com/ThomasFranque), em particular de como executar o movimento e de como tratar dos portais, ainda tendo ajudado num problema de incrementação do método `PickColor` na classe `Player` e sugestão de mudar os métodos da classe `Text` para `static`.
+6. Troca de ideias com o colega [João Moreira, a21801608](https://github.com/Slatius), tendo ajudado num problema do movimento, presente no método `MoveGhost` e ajudou ainda a meter o movimento entre os _mirrors_ a funcionar, isto nos métodos `MirroInteractionCheck` e `MirroChoice`, todos da classe `Player`.
 
