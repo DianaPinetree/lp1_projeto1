@@ -115,7 +115,7 @@ namespace EightTeenGhosts
             CellColor color;
             int playerColor;
 
-            
+
 
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
@@ -130,24 +130,21 @@ namespace EightTeenGhosts
             {
                 color = CellColor.Red;
                 rNum++;
-                // Debug of above
-                Console.WriteLine(rNum);
+                Console.WriteLine("Red Ghosts placed: {0}", rNum);
                 return color;
             }
             else if (playerColor == 2 && bNum < 3)
             {
                 color = CellColor.Blue;
                 bNum++;
-                // Debug of above
-                Console.WriteLine(bNum);
+                Console.WriteLine("Blue Ghosts placed: {0}", bNum);
                 return color;
             }
             else if (playerColor == 3 && yNum < 3)
             {
                 color = CellColor.Yellow;
                 yNum++;
-                // Debug of above
-                Console.WriteLine(yNum);
+                Console.WriteLine("Yellow Ghosts placed: {0}", yNum);
                 return color;
             }
             else
