@@ -144,7 +144,7 @@ namespace EightTeenGhosts
                         {
                             // Get Ghost from dungeon
                             currentPlayer.PlaceGhost
-                                (currentPlayer.RessurectGhost());
+                                (currentPlayer.RessurectGhost(), gameBoard);
                             break;
                         }
                 }

@@ -5,8 +5,8 @@ using System.Text;
 namespace EightTeenGhosts
 {
     /// <summary>
-    /// Defines the Portal object of the game board<br> Has the rotate functions
-    /// of a Portal cell.
+    /// Defines the Portal object of the game board<br> 
+    /// Has the rotate functions of a Portal cell.
     /// </summary>
     class Portal
     {

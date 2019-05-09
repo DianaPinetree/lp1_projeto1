@@ -134,17 +134,46 @@ namespace EightTeenGhosts
             return ghost;
         }
 
-        public void PlaceGhost(Cell ghost)
+        public void PlaceGhost(Cell ghost, Board board)
         {
             Position newPos;
             // x,y position of type Position
-            newPos = GetPosition();
+            newPos = GetPosition(board);
             
             // Change ghost to that position
             ghost.Position = newPos;
 
             // Add new ghost to playerGhosts array
             PlayerGhosts.Add(ghost);
+        }
+
+        public Position GetPosition(Board board)
+        {
+            // Return position, player input number and cell number vars
+            int inputIndex;
+
+            // Get a number between 1 and 9 from the player
+            inputIndex = Convert.ToInt32(Console.ReadLine());
+
+            // Force it to be between 1 and 9
+            inputIndex = Math.Clamp(inputIndex, 1, 9);
+            int cellIndex = 0;
+            // get the corresponding position
+            for (int i = 0; i < board.boardState.GetLength(1); i++)
+            {
+                for (int j = 0; j < board.boardState.GetLength(0); j++)
+                {
+                    foreach (Cell ghost in PlayerGhosts)
+                    {
+                        if (ghost.Position.x == i && ghost.Position.y == j)
+                            cellIndex++;
+
+                        if (cellIndex == inputIndex)
+                            return new Position(i, j);
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>
