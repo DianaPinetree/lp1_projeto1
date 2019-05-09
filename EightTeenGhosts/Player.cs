@@ -56,6 +56,51 @@ namespace EightTeenGhosts
         }
 
         /// <summary>
+        /// Inserts a new ghost to the player's ghost array
+        /// </summary>
+        /// <param name="position"> 
+        /// Position in the gameBoard of the ghost
+        /// </param>
+        /// <param name="color">
+        /// Color of the ghost
+        /// </param>
+        public void AppendGhost(Position position, CellColor color)
+        {
+            // Type that will be added to the array of ghosts
+            CellType type = CellType.Ghost;
+
+            for (int i = 0; i < PlayerGhosts.Count; i++)
+            {
+                if (PlayerGhosts[i] == null)
+                {
+                    PlayerGhosts[i] = new Cell(type, color, position);
+                    break;
+                }
+            }
+        }
+
+        public void RemoveGhost(Position position, string placeArrayName)
+        {
+            int index;
+            index = 0;
+            for (int i = 0; i < PlayerGhosts.Count; i++)
+            {
+                if (PlayerGhosts[i].Position == position)
+                    index = i;
+            }
+            if (placeArrayName == "Dungeon")
+            {
+                Dungeon[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 6;
+            }
+            else if (placeArrayName == "Outside")
+            {
+                ghostsOutside[index] = PlayerGhosts[index];
+                PlayerGhosts[index].Position.x = 7;
+            }
+        }
+
+        /// <summary>
         /// Class to get a color from player input
         /// </summary>
         /// <returns> Returns a Color of type CellColor</returns>
@@ -107,6 +152,8 @@ namespace EightTeenGhosts
             action = Convert.ToInt32(Console.ReadLine());
             return action;
         }
+
+
 
         public Position GetPosition(Board board)
         {
@@ -193,14 +240,14 @@ namespace EightTeenGhosts
             return null;
         }
 
-        public void MoveGhost(Position position)
+        public void MoveGhost(Position position, Board board)
         {
             string moveInput;
             int indexInArray;
 
             indexInArray = PlayerGhosts.IndexOf
                 (PlayerGhosts.Find(x => x.Position == position));
-
+            
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
@@ -208,25 +255,73 @@ namespace EightTeenGhosts
             switch (moveInput)
             {
                 case ("w"):
+                    if (PlayerGhosts[indexInArray].Position.x> 0)
+                        PlayerGhosts[indexInArray].Position.x--;
+                    break;
+                case ("a"):
                     if (PlayerGhosts[indexInArray].Position.y > 0)
                         PlayerGhosts[indexInArray].Position.y--;
                     break;
-                case ("a"):
-                    if (PlayerGhosts[indexInArray].Position.x > 0)
-                        PlayerGhosts[indexInArray].Position.x--;
-                    break;
                 case ("s"):
-                    if (PlayerGhosts[indexInArray].Position.y < 5)
-                        PlayerGhosts[indexInArray].Position.y++;
-                    break;
-                case ("d"):
                     if (PlayerGhosts[indexInArray].Position.x < 5)
                         PlayerGhosts[indexInArray].Position.x++;
+                    break;
+                case ("d"):
+                    if (PlayerGhosts[indexInArray].Position.y < 5)
+                        PlayerGhosts[indexInArray].Position.y++;
                     break;
                 default:
                     break;
             }
+
+            MirrorInteractionCheck(PlayerGhosts[indexInArray], board);
         }
 
+        public void MirrorInteractionCheck(Cell cell, Board board)
+        {
+            Position m1 = board.boardState[1, 1].Position;
+            Position m2 = board.boardState[1, 3].Position;
+            Position m3 = board.boardState[3, 1].Position;
+            Position m4 = board.boardState[3, 3].Position;
+
+            if (cell.Position.x == m1.x && cell.Position.y == m1.y)
+                cell.Position = MirrorChoice(m1, m2, m3, m4);
+            else if (cell.Position.x == m2.x && cell.Position.y == m2.y)
+                cell.Position = MirrorChoice(m2, m1, m3, m4);
+            else if (cell.Position.x == m3.x && cell.Position.y == m3.y)
+                cell.Position = MirrorChoice(m3, m1, m2, m4);
+            else if (cell.Position.x == m4.x && cell.Position.y == m4.y)
+                cell.Position = MirrorChoice(m4, m1, m2, m3);
+        }
+
+        private Position MirrorChoice(Position mirrorEntered, Position mirror1,
+            Position mirror2, Position mirror3)
+        {
+            int choiceInput;
+            Position newDestination = new Position();
+
+            Console.WriteLine($"Choose the position of the Mirror room you" +
+                $"to move to:\n(1 - ({mirror1.y}, {mirror1.x}); 2 - " +
+                $"({mirror2.y}, {mirror2.x}); 3 - ({mirror3.y}, {mirror3.x})");
+
+            choiceInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (choiceInput)
+            {
+                case (1):
+                    newDestination.x = mirror1.x;
+                    newDestination.y = mirror1.y;
+                    break;
+                case (2):
+                    newDestination.x = mirror2.x;
+                    newDestination.y = mirror2.y;
+                    break;
+                case (3):
+                    newDestination.x = mirror3.x;
+                    newDestination.y = mirror3.y;
+                    break;
+            }
+            return newDestination;
+        }
     }
 }

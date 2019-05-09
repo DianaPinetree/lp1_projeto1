@@ -135,7 +135,9 @@ namespace EightTeenGhosts
                             // Move a ghost
                             Renderer.EnumeratePlayerGhosts(currentPlayer,
                                 gameBoard);
-                            Console.WriteLine(currentPlayer.GetPosition(gameBoard).x);
+                            Position pos = currentPlayer.
+                                GetPosition(gameBoard);
+                            currentPlayer.MoveGhost(pos, gameBoard);
 
                             break;
                         }
