@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -193,16 +193,15 @@ namespace EightTeenGhosts
         public Position GetPosition(Board board, CellColor color)
         {
             // Return position, player input number and cell number vars
-            Position cellPosition;
+            Position ghostPos;
             int inputIndex;
-            int cellIndex;
+            int cellIndex = 1;
 
             // Get a number between 1 and 6 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
 
             // Force it to be between 1 and 6
             inputIndex = Math.Clamp(inputIndex, 1, 6);
-            cellIndex = 1;
 
             // get the corresponding position
             for (int i = 0; i < board.boardState.GetLength(0); i++)
@@ -218,8 +217,8 @@ namespace EightTeenGhosts
                         if (inputIndex == cellIndex)
                         {
                             // Create a new position with the x,y coordinates
-                            cellPosition = new Position(i, j);
-                            return cellPosition;
+                            ghostPos = new Position(i, j);
+                            return ghostPos;
                         }
                         cellIndex++;
                     }
@@ -234,8 +233,9 @@ namespace EightTeenGhosts
             int indexInArray;
 
             indexInArray = PlayerGhosts.IndexOf
-                (PlayerGhosts.Find(x => x.Position == position));
-            
+                (PlayerGhosts.Find(x => x.Position.x == position.x && x.Position.y == position.y));
+
+
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
@@ -243,7 +243,7 @@ namespace EightTeenGhosts
             switch (moveInput)
             {
                 case ("w"):
-                    if (PlayerGhosts[indexInArray].Position.x> 0)
+                    if (PlayerGhosts[indexInArray].Position.x > 0)
                         PlayerGhosts[indexInArray].Position.x--;
                     break;
                 case ("a"):
@@ -310,6 +310,23 @@ namespace EightTeenGhosts
                     break;
             }
             return newDestination;
+        }
+
+        private void GhostCombat(Player player1, Player player2)
+        {
+            Position ghost1Pos, ghost2Pos;
+
+            ghost1Pos = new Position();
+            ghost2Pos = new Position();
+
+            foreach (Cell ghost1 in player1.PlayerGhosts)
+            {
+                
+                foreach (Cell ghost2 in player2.PlayerGhosts)
+                {
+
+                }
+            }
         }
     }
 }
