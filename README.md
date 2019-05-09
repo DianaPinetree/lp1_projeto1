@@ -38,7 +38,7 @@
 - A classe `Player` contem todas os métodos relacionados com _input_ e movimentos de fantasmas.
 - A classe `Renderer` serve para desenhar o estado do jogo, e células de cores específicas.
 
-#### [Diagrama UML](https://drive.google.com/file/d/1UltkfBIbTjS5Fpq49VYWiZuQH8HrZWpg/view?usp=sharing)
+#### [Diagrama UML](https://drive.google.com/file/d/1Sj7iT_3aJ4dJc8MJjXubUL6-owMjVFTB/view?usp=sharing)
 
 ![DiagramaUML](diagramaUml.png)
 
