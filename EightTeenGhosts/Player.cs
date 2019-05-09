@@ -117,8 +117,7 @@ namespace EightTeenGhosts
 
             // Ask the color and get the input
             Console.WriteLine("What color of ghost do you want to place? " +
-                "red: 1, blue: 2, yellow: 3" +
-                "\n\nPress 4 for help.");
+                "red: 1, blue: 2, yellow: 3");
             playerColor = Convert.ToInt32(Console.ReadLine());
 
             // Compare and return the corresponding color
