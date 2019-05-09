@@ -135,8 +135,10 @@ namespace EightTeenGhosts
                             // Move a ghost
                             Renderer.EnumeratePlayerGhosts(currentPlayer,
                                 gameBoard);
+
                             Position pos = currentPlayer.
                                 GetPosition(gameBoard);
+                          
                             currentPlayer.MoveGhost(pos, gameBoard);
                             break;
                         }
@@ -144,7 +146,7 @@ namespace EightTeenGhosts
                         {
                             // Get Ghost from dungeon
                             currentPlayer.PlaceGhost
-                                (currentPlayer.RessurectGhost());
+                                (currentPlayer.RessurectGhost(), gameBoard);
                             break;
                         }
                 }
