@@ -150,7 +150,7 @@ namespace EightTeenGhosts
                             break;
                         }
                 }
-
+                GhostCombat(player1, player2);
                 // Check for any ghosts that can leave
                 CheckForPortalsExit(player1);
                 CheckForPortalsExit(player2);
@@ -261,6 +261,51 @@ namespace EightTeenGhosts
                 }
 
             }
+        }
+
+        private void GhostCombat(Player player1, Player player2)
+        {
+            Cell ghostp1, ghostp2, ghostWin;
+            ghostp1 = new Cell(CellType.Ghost);
+            ghostp2 = new Cell(CellType.Ghost);
+            foreach (Cell ghost1 in player1.PlayerGhosts)
+            {
+                // get the position from current ghost
+                ghostp1 = ghost1;
+                foreach (Cell ghost2 in player2.PlayerGhosts)
+                {
+                    // compare to all ghosts in player2 ghosts position
+                    if (ghost1.Position == ghost2.Position)
+                    {
+                        // if 1 == 2 then break for loop
+                        ghostp2 = ghost2;
+                        break;
+                    }
+                    else continue;
+                }
+            }
+
+            ghostWin = Fight(ghostp1, ghostp2);
+            // whichever looses gets thrown into the respective player dungeon
+            if (player1.PlayerGhosts.Find(x => x == ghostWin) == ghostp1)
+            {
+                player2.PlayerGhosts.Remove(ghostp2);
+            }
+            else
+            {
+                player1.PlayerGhosts.Remove(ghostp1);
+            }
+        }
+
+        private Cell Fight(Cell ghost1, Cell ghost2)
+        {
+            CellColor ghostWinColor;
+            ghostWinColor = winCheck.CombatCheck(ghost1.Color, ghost2.Color);
+
+            if (ghostWinColor == ghost1.Color)
+                return ghost1;
+            else
+                return ghost2;
         }
     }
 }

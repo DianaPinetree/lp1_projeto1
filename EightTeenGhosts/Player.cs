@@ -26,7 +26,7 @@ namespace EightTeenGhosts
         /// </value>
         public List<Cell> PlayerGhosts { get; set; }
 
-        public List<Cell> Dungeon { get; private set; }
+        public List<Cell> Dungeon { get; set; }
 
         // Property for the ghosts that have left the castle, player 1 and 2
         /// <value> 
@@ -138,13 +138,29 @@ namespace EightTeenGhosts
         {
             Position newPos;
             // x,y position of type Position
-            newPos = GetPosition(board);
+            newPos = GetPosition();
             
             // Change ghost to that position
             ghost.Position = newPos;
 
             // Add new ghost to playerGhosts array
             PlayerGhosts.Add(ghost);
+        }
+
+        public Position GetPosition()
+        {
+            int x;
+            int y;
+            Position newPos;
+            Console.WriteLine("Give me a X coordinate (1-5)");
+            Console.Write("X:");
+            x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Give me a Y coordinate (1-5)");
+            Console.Write("Y:");
+            y = Convert.ToInt32(Console.ReadLine());
+
+            newPos = new Position(x - 1, y -1);
+            return newPos;
         }
 
         public Position GetPosition(Board board)
