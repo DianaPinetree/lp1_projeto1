@@ -14,13 +14,13 @@
 
 - Afonso Rosa:
     
-    - Construção da classe `Text` e estruturação da mesma, adição das restrições no método `PickColor` da classe `Player` que impedem o jogadores de ter mais de 3 fantasmas de uma cor e que os proíbem de colocar fantasmas de uma cor após já não haver mais para meter. Aprofundamento substancial do ficheiro `README.md` e diversas alterações e realização do `Fluxograma`.
+    - Construção da classe `Text` e estruturação da mesma, adição das restrições no método `PickColor` da classe `Player` que impedem o jogadores de ter mais de 3 fantasmas de uma cor e que os proíbem de colocar fantasmas de uma cor após já não haver mais para meter. Aprofundamento substancial do ficheiro `README.md`, sendo o responsável pelo [Markdown](https://guides.github.com/features/mastering-markdown/) e pela estruturação e organização do mesmo, e diversas alterações e realização do `Fluxograma`.
 - Pedro Inácio:
 
-    - ... e realização do `Diagrama UML`.
+    - Construção dos métodos `MoveGhost`, `MirrorInterectionCheck` e `MirrorChoice` da class `Player` que tratam do movimento dos fantasmas no tabuleiro de jogo e realização do `Diagrama UML`.
 - Rodrigo Pinheiro:
 
-    - Construção e estruturação das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Player`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` e documentação adequada das mesmas. Realização das classes `x`, `x`, `etc` na sua **totalidade** e realização substancial/praticamente completa das classes `x`, `x`, `etc`. Correção da ortografia na classe `Text`. Realização da versão inicial do `README.md` e várias alterações, verificação do `Fluxograma`, realização do `Doxygen` e incorporação da imagem do `Fluxograma` em `git lfs`.
+    - Construção e estruturação das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Player`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` e documentação adequada das mesmas. Realização das classes `BoardClass`, `Cell`, `CellColor`, `CellType`, `Game`, `Portal`, `Position`, `Program`, `Renderer` e `WinCheck` na sua **totalidade** e realização substancial da classe `Player`. Correção da ortografia na classe `Text`. Realização da versão inicial do `README.md` e várias alterações, verificação do `Fluxograma`, realização do `Doxygen` e incorporação da imagem do `Fluxograma` em `git lfs`.
 
 #### Arquitetura do Programa:
 
@@ -53,7 +53,7 @@
 #### [Fluxograma](https://drive.google.com/file/d/1LfA4-4dr6Sf2HyhDFZUAkrbw2Wnu33jO/view?usp=sharing)
 ![Fluxograma](fluxograma.png)
 
-### Conclusões:
+### Conclusões e Matéria aprendida:
 
 
 ### Referências:
