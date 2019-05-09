@@ -135,7 +135,7 @@ namespace EightTeenGhosts
                             // Move a ghost
                             Renderer.EnumeratePlayerGhosts(currentPlayer,
                                 gameBoard);
-                            currentPlayer.MoveGhost(currentPlayer.GetPosition(gameBoard));
+                            Console.WriteLine(currentPlayer.GetPosition(gameBoard).x);
 
                             break;
                         }
@@ -231,7 +231,7 @@ namespace EightTeenGhosts
                 ghostPosition = currentPlayer.GetPosition(gameBoard, color);
 
                 // Add the created ghost to the respective player's ghost list
-                currentPlayer.AppendGhost(ghostPosition, color);
+                currentPlayer.PlayerGhosts.Add(new Cell(CellType.Ghost, color, ghostPosition));
 
                 // Sets the created ghost into the board position in gameBoard
                 gameBoard.SetPosition(ghostPosition, color, CellType.Ghost);

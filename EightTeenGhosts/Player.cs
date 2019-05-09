@@ -24,9 +24,9 @@ namespace EightTeenGhosts
         /// Cell array property for the player's owned ghosts with a get and a
         /// private set
         /// </value>
-        public Cell[] PlayerGhosts { get; private set; }
+        public List<Cell> PlayerGhosts { get; set; }
 
-        public Cell[] Dungeon { get; private set; }
+        public List<Cell> Dungeon { get; private set; }
 
         // Property for the ghosts that have left the castle, player 1 and 2
         /// <value> 
@@ -34,7 +34,7 @@ namespace EightTeenGhosts
         /// the git repository, ghosts that count for the win state.<br>
         /// Can only be changed from inside the Board class.
         /// </value>
-        public Cell[] ghostsOutside { get; private set; }
+        public List<Cell> ghostsOutside { get; private set; }
 
         // Constructor that receives a player name
         /// <summary>
@@ -45,19 +45,14 @@ namespace EightTeenGhosts
         public Player(string playerName)
         {
             PlayerName = playerName;
-            ghostsOutside = new Cell[9];
-            Dungeon = new Cell[9];
-            PlayerGhosts = new Cell[9];
-            InitializePools();
+            InitLists();
         }
 
-        private void InitializePools()
+        private void InitLists()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                ghostsOutside[i] = new Cell(CellType.Ghost);
-                Dungeon[i] = new Cell(CellType.Ghost);
-            }
+            PlayerGhosts = new List<Cell>();
+            Dungeon = new List<Cell>();
+            ghostsOutside = new List<Cell>();
         }
 
         /// <summary>
@@ -74,7 +69,7 @@ namespace EightTeenGhosts
             // Type that will be added to the array of ghosts
             CellType type = CellType.Ghost;
 
-            for (int i = 0; i < PlayerGhosts.Length; i++)
+            for (int i = 0; i < PlayerGhosts.Count; i++)
             {
                 if (PlayerGhosts[i] == null)
                 {
@@ -88,7 +83,7 @@ namespace EightTeenGhosts
         {
             int index;
             index = 0;
-            for (int i = 0; i < PlayerGhosts.Length; i++)
+            for (int i = 0; i < PlayerGhosts.Count; i++)
             {
                 if (PlayerGhosts[i].Position == position)
                     index = i;
@@ -158,33 +153,13 @@ namespace EightTeenGhosts
             return action;
         }
 
-        /// <summary>
-        /// Turns a position into a ghost index of the 
-        /// players playerGhosts array
-        /// </summary>
-        /// <param name="position"> Position of the ghost in the board</param>
-        /// <returns></returns>
-        public int PositionToGhost(Position position)
-        {
-            int counter;
-            counter = 0;
-            foreach (Cell ghost in PlayerGhosts)
-            {
-                if (ghost.Position == position)
-                    return counter;
-                else
-                    counter++;
-            }
-
-            return 0;
-        }
-
         public Position GetPosition(Board board)
         {
             // Return position, player input number and cell number vars
             Position ghostPosition;
             int inputIndex;
             int cellIndex;
+
             // Get a number between 1 and 9 from the player
             inputIndex = Convert.ToInt32(Console.ReadLine());
 
@@ -192,6 +167,7 @@ namespace EightTeenGhosts
             inputIndex = Math.Clamp(inputIndex, 1, 9);
             cellIndex = 1;
 
+            ghostPosition = new Position();
             // get the corresponding position
             for (int i = 0; i < board.boardState.GetLength(0); i++)
             {
@@ -199,19 +175,14 @@ namespace EightTeenGhosts
                 {
                     foreach (Cell ghost in PlayerGhosts)
                     {
-                        if (ghost.Position.x == j
-                            && ghost.Position.y == i)
-                        {
-                            cellIndex++;
-                            if (cellIndex == inputIndex)
-                            {
-                                ghostPosition = new Position(i, j);
-                                return ghostPosition;
-                            }
-                        }
+                        if (ghost.Position.x == i
+                            && ghost.Position.y == j) return ghost.Position;
+                        else if (ghost.Position == null) cellIndex++;
+                        else continue;
                     }
                 }
             }
+
             return null;
         }
 
@@ -267,42 +238,35 @@ namespace EightTeenGhosts
             return null;
         }
 
-        public void MoveGhost(Position ghostPos)
+        public void MoveGhost(Position position)
         {
             string moveInput;
-            int index;
+            int indexInArray;
+
+            indexInArray = PlayerGhosts.IndexOf
+                (PlayerGhosts.Find(x => x.Position == position));
+
             Console.WriteLine("What direction are you headed to?\n" +
                 "w - up; a - left; s - down; d - right");
             moveInput = Console.ReadLine();
 
-            index = 0;
-            foreach (Cell ghost in PlayerGhosts)
-            {
-                if (ghost.Position == ghostPos)
-                {
-                    PlayerGhosts[index].Position = ghostPos;
-                    break;
-                }
-                index++;
-            }
-
             switch (moveInput)
             {
                 case ("w"):
-                    if (PlayerGhosts[index].Position.y > 0)
-                        PlayerGhosts[index].Position.y--;
+                    if (PlayerGhosts[indexInArray].Position.y > 0)
+                        PlayerGhosts[indexInArray].Position.y--;
                     break;
                 case ("a"):
-                    if (PlayerGhosts[index].Position.x > 0)
-                        PlayerGhosts[index].Position.x--;
+                    if (PlayerGhosts[indexInArray].Position.x > 0)
+                        PlayerGhosts[indexInArray].Position.x--;
                     break;
                 case ("s"):
-                    if (PlayerGhosts[index].Position.y < 5)
-                        PlayerGhosts[index].Position.y++;
+                    if (PlayerGhosts[indexInArray].Position.y < 5)
+                        PlayerGhosts[indexInArray].Position.y++;
                     break;
                 case ("d"):
-                    if (PlayerGhosts[index].Position.x < 5)
-                        PlayerGhosts[index].Position.x++;
+                    if (PlayerGhosts[indexInArray].Position.x < 5)
+                        PlayerGhosts[indexInArray].Position.x++;
                     break;
                 default:
                     break;
